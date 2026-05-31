@@ -6,247 +6,531 @@
 <title>FlowHabit – Tu hábito, a tu ritmo</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --verde: #1D9E75;
-    --verde-claro: #E1F5EE;
-    --verde-oscuro: #085041;
-    --acento: #0F6E56;
-    --texto: #1a1a1a;
-    --texto-secundario: #5a5a5a;
-    --bg: #f8faf8;
-    --blanco: #ffffff;
-    --borde: rgba(0,0,0,0.08);
-    --radio: 14px;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', sans-serif; color: var(--texto); background: var(--bg); overflow-x: hidden; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* ===== NAV ===== */
+  :root {
+    --green: #1D9E75;
+    --green-light: #E1F5EE;
+    --green-mid: #5DCAA5;
+    --green-dark: #0F6E56;
+    --green-deep: #085041;
+    --teal: #085041;
+    --accent: #1D9E75;
+    --text: #1a1a1a;
+    --muted: #5a6272;
+    --border: #e2e8f0;
+    --white: #ffffff;
+    --surface: #f7fdf9;
+    --surface2: #edfaf4;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #ffffff;
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Syne', sans-serif;
+    line-height: 1.15;
+  }
+
+  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5vw;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0 2rem; height: 64px;
-    background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--borde);
+    height: 68px;
   }
-  .logo { display: flex; align-items: center; gap: 10px; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; color: var(--verde-oscuro); text-decoration: none; }
-  .logo-icon { width: 34px; height: 34px; background: var(--verde); border-radius: 9px; display: flex; align-items: center; justify-content: center; }
-  .logo-icon svg { width: 20px; height: 20px; fill: white; }
-  nav ul { display: flex; gap: 2rem; list-style: none; }
-  nav ul a { text-decoration: none; color: var(--texto-secundario); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
-  nav ul a:hover { color: var(--verde); }
-  .nav-cta { background: var(--verde); color: white !important; padding: 8px 20px; border-radius: 50px; font-weight: 500 !important; transition: background 0.2s !important; }
-  .nav-cta:hover { background: var(--acento) !important; }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.4rem;
+    color: var(--green-dark);
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 36px; height: 36px;
+    background: var(--green);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-icon svg { width: 22px; height: 22px; fill: white; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.9rem; font-weight: 500;
+    color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+  .nav-cta {
+    background: var(--green);
+    color: white !important; font-weight: 600 !important;
+    padding: 0.5rem 1.4rem; border-radius: 40px;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+  .nav-cta:hover { background: var(--green-dark) !important; transform: translateY(-1px); }
 
-  /* ===== HERO ===== */
+  /* HERO */
   .hero {
-    min-height: 100vh; display: flex; align-items: center; justify-content: center;
-    padding: 100px 2rem 4rem;
-    background: linear-gradient(160deg, #f0faf6 0%, #e8f8f1 40%, #f8faf8 100%);
+    padding: 140px 5vw 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-size: 0.82rem; font-weight: 600;
+    padding: 6px 16px; border-radius: 40px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em; text-transform: uppercase;
+  }
+  .hero-badge span { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+  .hero h1 {
+    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    font-weight: 800;
+    color: #0a0a0a;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 em { color: var(--green); font-style: normal; }
+  .hero p {
+    font-size: 1.1rem; color: var(--muted);
+    max-width: 500px; margin-bottom: 2.5rem; font-weight: 300;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+  .btn-primary {
+    background: var(--green);
+    color: white; font-weight: 600; font-size: 1rem;
+    padding: 0.85rem 2rem; border-radius: 50px;
+    border: none; cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: all 0.2s; box-shadow: 0 4px 20px rgba(29,158,117,0.3);
+  }
+  .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(29,158,117,0.4); }
+  .btn-ghost {
+    color: var(--green-dark); font-weight: 500; font-size: 0.95rem;
+    padding: 0.85rem 1.5rem; border-radius: 50px;
+    border: 1.5px solid var(--green-mid);
+    background: transparent; cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover { background: var(--green-light); }
+  .hero-visual {
+    position: relative;
+    display: flex; justify-content: center;
+  }
+  .phone-mockup {
+    width: 280px;
+    background: #0a0a0a;
+    border-radius: 44px;
+    padding: 14px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.06);
+    position: relative;
+  }
+  .phone-screen {
+    background: linear-gradient(160deg, #0F6E56 0%, #1D9E75 50%, #E1F5EE 100%);
+    border-radius: 34px;
+    height: 520px;
+    overflow: hidden;
+    padding: 30px 20px 20px;
+    display: flex; flex-direction: column;
+  }
+  .phone-notch {
+    width: 80px; height: 26px;
+    background: #0a0a0a;
+    border-radius: 20px;
+    margin: 0 auto 24px;
+  }
+  .phone-ui-greeting {
+    font-family: 'Syne', sans-serif;
+    color: white; font-size: 1.05rem; font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .phone-ui-sub { color: rgba(255,255,255,0.7); font-size: 0.78rem; margin-bottom: 20px; }
+  .phone-ui-card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 18px; padding: 16px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .phone-ui-card-label { color: rgba(255,255,255,0.7); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .phone-ui-card-title { color: white; font-weight: 600; font-size: 0.9rem; margin-bottom: 10px; }
+  .progress-bar { height: 6px; background: rgba(255,255,255,0.2); border-radius: 6px; overflow: hidden; }
+  .progress-fill { height: 100%; background: white; border-radius: 6px; }
+  .phone-habits { display: flex; flex-direction: column; gap: 8px; }
+  .habit-item {
+    background: rgba(255,255,255,0.12);
+    border-radius: 14px; padding: 10px 14px;
+    display: flex; align-items: center; gap: 10px;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .habit-check {
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.5);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .habit-check.done { background: white; border-color: white; }
+  .habit-check.done::after { content: '✓'; color: var(--green); font-size: 12px; font-weight: 700; }
+  .habit-text { color: white; font-size: 0.8rem; font-weight: 500; }
+  .habit-time { margin-left: auto; color: rgba(255,255,255,0.6); font-size: 0.7rem; }
+  .floating-badge {
+    position: absolute;
+    background: white;
+    border-radius: 18px;
+    padding: 10px 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    display: flex; align-items: center; gap: 10px;
+    font-size: 0.8rem;
+  }
+  .fb-left { left: -70px; top: 80px; }
+  .fb-right { right: -60px; bottom: 130px; }
+  .fb-icon { width: 32px; height: 32px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .fb-icon.green { background: var(--green-light); }
+  .fb-icon.amber { background: #FAEEDA; }
+  .fb-text strong { display: block; font-weight: 600; color: #0a0a0a; font-size: 0.82rem; }
+  .fb-text span { color: var(--muted); font-size: 0.72rem; }
+
+  /* STATS */
+  .stats-bar {
+    background: var(--green-deep);
+    padding: 2.5rem 5vw;
+    display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap;
+  }
+  .stat-item { text-align: center; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; color: white; }
+  .stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.65); margin-top: 2px; }
+
+  /* SECTIONS */
+  section { padding: 100px 5vw; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-tag {
+    display: inline-block;
+    background: var(--green-light); color: var(--green-dark);
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 5px 14px; border-radius: 40px;
+    margin-bottom: 1rem;
+  }
+  .section-title { font-size: clamp(1.9rem, 3.5vw, 2.8rem); font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .section-sub { font-size: 1.05rem; color: var(--muted); font-weight: 300; max-width: 520px; line-height: 1.7; }
+
+  /* FEATURES */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .feature-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: all 0.3s;
     position: relative; overflow: hidden;
   }
-  .hero::before {
-    content: ''; position: absolute; top: -200px; right: -200px;
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(29,158,117,0.08) 0%, transparent 70%);
-    border-radius: 50%;
+  .feature-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--green), var(--green-mid));
+    opacity: 0; transition: opacity 0.3s;
   }
-  .hero-inner { max-width: 1100px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-  .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--verde-claro); color: var(--acento); font-size: 0.78rem; font-weight: 600; padding: 6px 14px; border-radius: 50px; margin-bottom: 1.5rem; letter-spacing: 0.03em; text-transform: uppercase; }
-  .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; color: var(--verde-oscuro); margin-bottom: 1.5rem; }
-  .hero h1 span { color: var(--verde); }
-  .hero p { font-size: 1.1rem; line-height: 1.7; color: var(--texto-secundario); margin-bottom: 2.5rem; font-weight: 300; }
-  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn-primary { background: var(--verde); color: white; padding: 14px 28px; border-radius: 50px; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 1rem; border: none; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s, transform 0.2s; }
-  .btn-primary:hover { background: var(--acento); transform: translateY(-1px); }
-  .btn-secondary { background: transparent; color: var(--verde-oscuro); padding: 14px 28px; border-radius: 50px; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 1rem; border: 1.5px solid var(--verde); cursor: pointer; text-decoration: none; transition: background 0.2s; }
-  .btn-secondary:hover { background: var(--verde-claro); }
-  .hero-stats { display: flex; gap: 2rem; margin-top: 2.5rem; }
-  .stat { }
-  .stat-num { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--verde-oscuro); }
-  .stat-label { font-size: 0.8rem; color: var(--texto-secundario); }
+  .feature-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.07); border-color: var(--green-mid); }
+  .feature-card:hover::before { opacity: 1; }
+  .feature-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: var(--green-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; margin-bottom: 1.2rem;
+  }
+  .feature-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.6rem; }
+  .feature-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; font-weight: 300; }
 
-  /* Phone mockup */
-  .phone-wrap { display: flex; justify-content: center; position: relative; }
-  .phone { width: 240px; height: 480px; background: white; border-radius: 36px; border: 3px solid #e0e0e0; box-shadow: 0 30px 80px rgba(0,0,0,0.12); overflow: hidden; position: relative; }
-  .phone-header { background: var(--verde); padding: 20px 16px 14px; color: white; }
-  .phone-header .time { font-size: 0.65rem; opacity: 0.8; margin-bottom: 6px; }
-  .phone-header h3 { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; }
-  .phone-header p { font-size: 0.7rem; opacity: 0.85; margin-top: 2px; }
-  .phone-body { padding: 14px; background: #f8f8f8; }
-  .habit-card { background: white; border-radius: 12px; padding: 12px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-  .habit-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
-  .h-green { background: #e1f5ee; }
-  .h-blue { background: #e6f1fb; }
-  .h-amber { background: #faeeda; }
-  .habit-info { flex: 1; }
-  .habit-info span { display: block; font-size: 0.7rem; font-weight: 600; color: #1a1a1a; }
-  .habit-info small { font-size: 0.6rem; color: #888; }
-  .habit-check { width: 22px; height: 22px; border-radius: 50%; background: var(--verde); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.65rem; }
-  .progress-bar-wrap { background: white; border-radius: 12px; padding: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-  .progress-bar-wrap small { font-size: 0.65rem; color: #888; display: block; margin-bottom: 6px; }
-  .pb { height: 6px; background: #eee; border-radius: 3px; overflow: hidden; }
-  .pb-fill { height: 100%; border-radius: 3px; background: var(--verde); }
-  .points { font-size: 0.7rem; font-weight: 600; color: var(--verde-oscuro); margin-top: 6px; }
-  .notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 70px; height: 18px; background: #e0e0e0; border-radius: 0 0 14px 14px; z-index: 10; }
-
-  /* ===== SECTION BASE ===== */
-  section { padding: 6rem 2rem; }
-  .container { max-width: 1100px; margin: 0 auto; }
-  .section-label { font-size: 0.78rem; font-weight: 600; color: var(--verde); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.8rem; }
-  .section-title { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; color: var(--verde-oscuro); margin-bottom: 1rem; line-height: 1.2; }
-  .section-sub { font-size: 1.05rem; color: var(--texto-secundario); max-width: 580px; line-height: 1.7; font-weight: 300; }
-
-  /* ===== FEATURES ===== */
-  .features { background: white; }
-  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-  .feature-card { background: var(--bg); border-radius: var(--radio); padding: 1.8rem; border: 1px solid var(--borde); transition: transform 0.2s, box-shadow 0.2s; }
-  .feature-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(29,158,117,0.1); }
-  .feat-icon { width: 48px; height: 48px; background: var(--verde-claro); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.2rem; }
-  .feature-card h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--verde-oscuro); margin-bottom: 0.6rem; }
-  .feature-card p { font-size: 0.9rem; color: var(--texto-secundario); line-height: 1.6; font-weight: 300; }
-
-  /* ===== PÚBLICO ===== */
-  .publico { background: var(--verde-claro); }
-  .publico-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
-  .publico-card { background: white; border-radius: var(--radio); padding: 2rem; border: 1px solid rgba(29,158,117,0.15); }
-  .publico-card .tag { display: inline-block; background: var(--verde-claro); color: var(--acento); font-size: 0.75rem; font-weight: 600; padding: 4px 12px; border-radius: 50px; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.04em; }
-  .publico-card h3 { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--verde-oscuro); margin-bottom: 0.8rem; }
-  .publico-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-  .publico-card ul li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9rem; color: var(--texto-secundario); line-height: 1.5; }
-  .publico-card ul li::before { content: '✓'; color: var(--verde); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-
-  /* ===== PRICING ===== */
-  .pricing { background: white; }
-  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; align-items: start; }
-  .price-card { border-radius: var(--radio); padding: 2rem; border: 1.5px solid var(--borde); position: relative; }
-  .price-card.featured { border-color: var(--verde); background: var(--verde-oscuro); color: white; }
-  .featured-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--verde); color: white; font-size: 0.72rem; font-weight: 600; padding: 4px 16px; border-radius: 50px; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.04em; }
-  .price-card h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--verde-oscuro); margin-bottom: 0.5rem; }
-  .price-card.featured h3 { color: white; }
-  .price { font-family: 'Syne', sans-serif; font-size: 2.4rem; font-weight: 800; color: var(--verde); margin: 1rem 0 0.3rem; }
-  .price-card.featured .price { color: #9FE1CB; }
-  .price sub { font-size: 1rem; font-weight: 400; }
-  .price-desc { font-size: 0.85rem; color: var(--texto-secundario); margin-bottom: 1.5rem; }
-  .price-card.featured .price-desc { color: rgba(255,255,255,0.7); }
-  .price-features { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.8rem; }
-  .price-features li { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; color: var(--texto-secundario); }
-  .price-card.featured .price-features li { color: rgba(255,255,255,0.85); }
-  .price-features li::before { content: '✓'; color: var(--verde); font-weight: 700; flex-shrink: 0; }
-  .price-card.featured .price-features li::before { color: #9FE1CB; }
-  .btn-plan { width: 100%; padding: 12px; border-radius: 50px; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.95rem; cursor: pointer; border: 1.5px solid var(--verde); background: transparent; color: var(--verde); transition: background 0.2s, color 0.2s; }
-  .btn-plan:hover { background: var(--verde-claro); }
-  .btn-plan.featured-btn { background: var(--verde); border-color: var(--verde); color: white; }
-  .btn-plan.featured-btn:hover { background: var(--acento); border-color: var(--acento); }
-
-  /* ===== BLOG RICO ===== */
-  .blog { background: var(--bg); }
-  .post-full { background: white; border-radius: 20px; padding: 2.5rem; margin-top: 2.5rem; border: 1px solid var(--borde); }
-  .post-alt { background: var(--bg); border-color: rgba(29,158,117,0.12); }
-  .post-tag-line { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-  .ptag { font-size: 0.72rem; font-weight: 600; padding: 4px 12px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.04em; }
-  .ptag-prod { background: #e1f5ee; color: #0F6E56; }
-  .ptag-bien { background: #e6f1fb; color: #185FA5; }
-  .ptag-gami { background: #faeeda; color: #854F0B; }
-  .ptag-priv { background: #fbeaf0; color: #993556; }
-  .ptag-lima { background: #e1f5ee; color: #0F6E56; }
-  .pdate { font-size: 0.8rem; color: #aaa; }
-  .post-title { font-family: 'Syne', sans-serif; font-size: clamp(1.3rem, 2.5vw, 1.9rem); font-weight: 700; color: var(--verde-oscuro); margin-bottom: 1.5rem; line-height: 1.25; }
-  .post-video-wrap { position: relative; width: 100%; padding-top: 56.25%; border-radius: 14px; overflow: hidden; background: #000; margin-bottom: 1.5rem; }
-  .post-video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
-  .post-hero-img { border-radius: 14px; overflow: hidden; margin-bottom: 1.5rem; }
-  .post-hero-img img { width: 100%; height: 340px; object-fit: cover; display: block; }
-  .img-caption { font-size: 0.78rem; color: #aaa; padding: 8px 0 0; text-align: center; }
-  .post-text { margin-bottom: 1.5rem; }
-  .post-text p { font-size: 0.97rem; line-height: 1.78; color: var(--texto-secundario); margin-bottom: 1rem; font-weight: 300; }
-  .post-text strong { color: var(--verde-oscuro); font-weight: 500; }
-  .post-quote { border-left: 4px solid var(--verde); padding: 0.8rem 1.2rem; background: var(--verde-claro); border-radius: 0 10px 10px 0; font-size: 0.95rem; color: var(--acento); font-style: italic; margin: 1.2rem 0; line-height: 1.6; }
-  .post-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
-  .post-two-col.reverse { direction: rtl; }
-  .post-two-col.reverse > * { direction: ltr; }
-  .small-video { margin-bottom: 0; }
-  .post-side-img { border-radius: 14px; overflow: hidden; }
-  .post-side-img img { width: 100%; height: 280px; object-fit: cover; display: block; }
-  .habit-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
-  .hs { display: flex; gap: 1rem; align-items: flex-start; background: var(--verde-claro); border-radius: 12px; padding: 1rem 1.2rem; }
-  .hs-num { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--verde); line-height: 1; flex-shrink: 0; width: 36px; }
-  .hs-info strong { display: block; font-size: 0.9rem; color: var(--verde-oscuro); margin-bottom: 0.3rem; font-weight: 600; }
-  .hs-info p { font-size: 0.82rem; color: var(--texto-secundario); line-height: 1.5; font-weight: 300; margin: 0; }
-  .post-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin: 1.5rem 0; }
-  .post-gallery img { width: 100%; height: 160px; object-fit: cover; border-radius: 10px; display: block; transition: transform 0.3s; }
-  .post-gallery img:hover { transform: scale(1.03); }
-  .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.2rem; }
-  .stat-box { background: var(--verde-claro); border-radius: 12px; padding: 1rem; text-align: center; }
-  .sb-num { display: block; font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--verde); }
-  .sb-label { font-size: 0.78rem; color: var(--acento); line-height: 1.4; display: block; margin-top: 4px; }
-  .infografia { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; }
-  .info-card { border-radius: 14px; padding: 1.4rem 1rem; text-align: center; }
-  .ic-green { background: #e1f5ee; } .ic-teal { background: #d0f0e5; } .ic-blue { background: #e6f1fb; }
-  .ic-amber { background: #faeeda; } .ic-coral { background: #faece7; } .ic-purple { background: #EEEDFE; }
-  .ic-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--verde-oscuro); }
-  .ic-label { font-size: 0.75rem; color: var(--texto-secundario); line-height: 1.4; margin-top: 6px; display: block; }
-  @media (max-width: 700px) {
-    .post-two-col, .habit-steps, .infografia { grid-template-columns: 1fr; }
-    .post-gallery { grid-template-columns: 1fr 1fr; }
-    .post-two-col.reverse { direction: ltr; }
+  /* IMPACT POSTS */
+  .impact-section { background: var(--surface); }
+  .posts-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;
+  }
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 1.5rem;
+  }
+  .post-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+    display: flex; flex-direction: column;
+  }
+  .post-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.09); }
+  .post-card.featured {
+    grid-column: 1 / 3;
+    grid-row: 1;
+  }
+  .post-card.featured .post-visual { height: 320px; }
+  .post-visual {
+    width: 100%; height: 220px;
+    position: relative; overflow: hidden;
+    background: #0a0a0a;
+    flex-shrink: 0;
+  }
+  .post-visual video {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  .post-visual img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  .post-visual-fallback {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 12px;
+  }
+  .play-btn {
+    width: 60px; height: 60px; border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: 2px solid rgba(255,255,255,0.5);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .play-btn:hover { background: rgba(255,255,255,0.25); transform: scale(1.1); }
+  .play-btn svg { width: 22px; height: 22px; fill: white; margin-left: 3px; }
+  .post-type-badge {
+    position: absolute; top: 14px; left: 14px;
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 4px 12px; border-radius: 40px;
+  }
+  .badge-video { background: rgba(29,158,117,0.9); color: white; }
+  .badge-image { background: rgba(255,255,255,0.9); color: var(--green-dark); }
+  .badge-data { background: rgba(8,80,65,0.85); color: #9FE1CB; }
+  .post-body { padding: 1.4rem; flex: 1; display: flex; flex-direction: column; }
+  .post-meta { font-size: 0.75rem; color: var(--green); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+  .post-body h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3; }
+  .post-body p { font-size: 0.85rem; color: var(--muted); line-height: 1.65; font-weight: 300; flex: 1; }
+  .post-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);
+  }
+  .post-date { font-size: 0.75rem; color: #aaa; }
+  .post-tag {
+    font-size: 0.7rem; font-weight: 600; color: var(--green-dark);
+    background: var(--green-light); padding: 3px 10px; border-radius: 20px;
   }
 
-  /* ===== TESTIMONIOS ===== */
-  .testimonios { background: white; }
-  .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-  .test-card { background: var(--bg); border-radius: var(--radio); padding: 1.8rem; border: 1px solid var(--borde); }
-  .stars { color: #f59e0b; font-size: 1rem; margin-bottom: 0.8rem; }
-  .test-card p { font-size: 0.9rem; color: var(--texto-secundario); line-height: 1.65; font-style: italic; margin-bottom: 1.2rem; font-weight: 300; }
-  .test-autor { display: flex; align-items: center; gap: 10px; }
-  .avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--verde-claro); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; color: var(--acento); }
-  .test-autor-info strong { display: block; font-size: 0.88rem; color: var(--verde-oscuro); font-weight: 600; }
-  .test-autor-info span { font-size: 0.78rem; color: #aaa; }
+  /* VIDEO embeds */
+  .video-wrapper {
+    width: 100%; height: 100%;
+    position: relative;
+  }
+  .video-wrapper iframe {
+    width: 100%; height: 100%;
+    border: none; display: block;
+  }
 
-  /* ===== CTA FINAL ===== */
-  .cta-final { background: var(--verde-oscuro); color: white; text-align: center; padding: 6rem 2rem; }
-  .cta-final h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 800; margin-bottom: 1rem; }
-  .cta-final p { font-size: 1.1rem; opacity: 0.8; margin-bottom: 2.5rem; font-weight: 300; max-width: 500px; margin-left: auto; margin-right: auto; }
-  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-  .btn-white { background: white; color: var(--verde-oscuro); padding: 14px 30px; border-radius: 50px; font-weight: 600; font-size: 1rem; border: none; cursor: pointer; text-decoration: none; transition: opacity 0.2s, transform 0.2s; }
-  .btn-white:hover { opacity: 0.9; transform: translateY(-1px); }
-  .btn-outline-white { background: transparent; color: white; padding: 14px 30px; border-radius: 50px; font-weight: 500; font-size: 1rem; border: 1.5px solid rgba(255,255,255,0.5); cursor: pointer; text-decoration: none; transition: background 0.2s; }
-  .btn-outline-white:hover { background: rgba(255,255,255,0.1); }
+  /* Generated SVG animations as video replacements */
+  .anim-video {
+    width: 100%; height: 100%;
+    position: relative; overflow: hidden;
+  }
 
-  /* ===== FOOTER ===== */
-  footer { background: #0d1f18; color: rgba(255,255,255,0.6); padding: 3rem 2rem; text-align: center; }
-  footer .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; color: white; margin-bottom: 0.5rem; }
+  /* VIDEO 1: Burnout animation */
+  .v1 { background: linear-gradient(135deg, #0F2027, #203A43, #2C5364); }
+  .v1 .pulse-ring {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 120px; height: 120px; border-radius: 50%;
+    border: 3px solid rgba(29,158,117,0.5);
+    animation: ringPulse 2.5s ease-out infinite;
+  }
+  .v1 .pulse-ring:nth-child(2) { animation-delay: 0.8s; }
+  .v1 .pulse-ring:nth-child(3) { animation-delay: 1.6s; }
+  @keyframes ringPulse { 0%{transform:translate(-50%,-50%) scale(0.5);opacity:1} 100%{transform:translate(-50%,-50%) scale(2.5);opacity:0} }
+  .v1 .center-icon {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 80px; height: 80px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--green-dark), var(--green));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 34px; animation: iconFloat 3s ease-in-out infinite;
+  }
+  @keyframes iconFloat { 0%,100%{transform:translate(-50%,-50%) translateY(0)} 50%{transform:translate(-50%,-50%) translateY(-8px)} }
+  .v1 .stat-bubble {
+    position: absolute; background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(6px);
+    border-radius: 14px; padding: 10px 14px;
+    color: white; font-size: 0.75rem;
+  }
+  .v1 .stat-bubble strong { display: block; font-size: 1.4rem; font-family: 'Syne', sans-serif; color: #9FE1CB; }
+
+  /* VIDEO 2: Habits wave */
+  .v2 { background: linear-gradient(160deg, #085041, #1D9E75); overflow: hidden; }
+  .v2-bars {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    display: flex; align-items: flex-end; gap: 6px; padding: 0 20px;
+  }
+  .v2-bar {
+    flex: 1; background: rgba(255,255,255,0.25); border-radius: 6px 6px 0 0;
+    animation: barRise 2s ease-in-out infinite alternate;
+  }
+  .v2-text {
+    position: absolute; top: 30px; left: 24px; right: 24px; color: white;
+  }
+  .v2-text h2 { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; line-height: 1.2; }
+  .v2-text p { font-size: 0.8rem; opacity: 0.75; margin-top: 6px; }
+  @keyframes barRise { 0%{opacity:0.4;transform:scaleY(0.6)} 100%{opacity:1;transform:scaleY(1)} }
+  .v2-dots {
+    position: absolute; top: 50%; right: 24px; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .v2-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    animation: dotPulse 1.5s ease-in-out infinite alternate;
+  }
+  .v2-dot:nth-child(2) { animation-delay: 0.3s; background: rgba(255,255,255,0.8); }
+  .v2-dot:nth-child(3) { animation-delay: 0.6s; }
+  @keyframes dotPulse { 0%{transform:scale(0.8);opacity:0.5} 100%{transform:scale(1.2);opacity:1} }
+
+  /* VIDEO 3: Sedentarismo */
+  .v3 { background: linear-gradient(135deg, #1a0533, #3b1068); }
+  .v3-clock {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-60%);
+    width: 90px; height: 90px;
+  }
+  .v3-ring { fill: none; stroke: rgba(255,255,255,0.15); stroke-width: 8; }
+  .v3-progress { fill: none; stroke: var(--green); stroke-width: 8; stroke-linecap: round; stroke-dasharray: 251; animation: clockFill 4s linear infinite; }
+  @keyframes clockFill { 0%{stroke-dashoffset:251} 100%{stroke-dashoffset:0} }
+  .v3-number {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    color: white; font-family: 'Syne', sans-serif; font-weight: 800;
+  }
+  .v3-labels {
+    position: absolute; bottom: 24px; left: 0; right: 0;
+    display: flex; justify-content: space-around;
+  }
+  .v3-label { text-align: center; color: white; }
+  .v3-label strong { font-family: 'Syne', sans-serif; font-size: 1.3rem; color: #9FE1CB; display: block; }
+  .v3-label span { font-size: 0.68rem; opacity: 0.7; }
+
+  /* IMAGE POSTS: SVG illustrations */
+  .img-illustration { width: 100%; height: 100%; }
+
+  /* PRICING */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+    max-width: 900px; margin-left: auto; margin-right: auto;
+  }
+  .price-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: 24px; padding: 2rem;
+    transition: all 0.3s;
+  }
+  .price-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
+  .price-card.featured {
+    border: 2px solid var(--green);
+    background: var(--surface);
+    position: relative;
+  }
+  .popular-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--green); color: white;
+    font-size: 0.75rem; font-weight: 700; padding: 4px 16px; border-radius: 40px;
+  }
+  .price-name { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .price-amount { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-height: 1; margin-bottom: 0.3rem; }
+  .price-period { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem; }
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 1.8rem; }
+  .price-features li {
+    font-size: 0.9rem; display: flex; align-items: center; gap: 10px; font-weight: 300;
+  }
+  .price-features li::before { content: '✓'; color: var(--green); font-weight: 700; font-size: 1rem; }
+  .price-features li.no::before { content: '×'; color: #ddd; }
+  .price-features li.no { color: #bbb; }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--green-deep); }
+  .testimonials .section-title { color: white; }
+  .testimonials .section-sub { color: rgba(255,255,255,0.65); }
+  .testimonials .section-tag { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.9); }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .testi-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px; padding: 1.8rem;
+  }
+  .testi-stars { color: #FFD166; font-size: 1rem; margin-bottom: 1rem; letter-spacing: 2px; }
+  .testi-text { color: rgba(255,255,255,0.88); font-size: 0.9rem; line-height: 1.75; font-style: italic; font-weight: 300; margin-bottom: 1.3rem; }
+  .testi-author { display: flex; align-items: center; gap: 12px; }
+  .testi-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; font-weight: 700;
+    background: rgba(255,255,255,0.15); color: white;
+  }
+  .testi-name { color: white; font-weight: 600; font-size: 0.9rem; }
+  .testi-role { color: rgba(255,255,255,0.55); font-size: 0.78rem; }
+
+  /* CTA FINAL */
+  .final-cta {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+    text-align: center; padding: 120px 5vw;
+  }
+  .final-cta h2 { font-size: clamp(2rem, 4vw, 3.2rem); color: white; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .final-cta p { color: rgba(255,255,255,0.75); font-size: 1.1rem; font-weight: 300; margin-bottom: 2.5rem; }
+  .final-cta .btn-primary { background: white; color: var(--green-dark); box-shadow: 0 4px 30px rgba(0,0,0,0.2); }
+  .final-cta .btn-primary:hover { background: #f0fdf8; transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: #0a0a0a;
+    color: rgba(255,255,255,0.55);
+    padding: 3rem 5vw;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; color: white; }
   footer p { font-size: 0.85rem; }
-  footer .footer-links { display: flex; gap: 1.5rem; justify-content: center; margin: 1rem 0; flex-wrap: wrap; }
-  footer .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
-  footer .footer-links a:hover { color: var(--verde); }
-
-  /* EDITOR MODAL */
-  .edit-btn { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--verde); color: white; border: none; border-radius: 50px; padding: 12px 22px; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.9rem; cursor: pointer; box-shadow: 0 4px 20px rgba(29,158,117,0.35); z-index: 150; display: flex; align-items: center; gap: 8px; transition: background 0.2s, transform 0.2s; }
-  .edit-btn:hover { background: var(--acento); transform: translateY(-2px); }
-  .editor-panel { display: none; position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,0.6); align-items: flex-end; justify-content: center; }
-  .editor-panel.open { display: flex; }
-  .editor-inner { background: white; border-radius: 20px 20px 0 0; width: 100%; max-width: 800px; max-height: 80vh; overflow-y: auto; padding: 2rem; }
-  .editor-inner h2 { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--verde-oscuro); margin-bottom: 1.5rem; }
-  .editor-close { float: right; background: #f0f0f0; border: none; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; }
-  .editor-group { margin-bottom: 1.2rem; }
-  .editor-group label { display: block; font-size: 0.85rem; font-weight: 500; color: var(--texto-secundario); margin-bottom: 0.4rem; }
-  .editor-group input, .editor-group textarea { width: 100%; padding: 10px 14px; border: 1.5px solid #e0e0e0; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--texto); outline: none; transition: border-color 0.2s; resize: vertical; }
-  .editor-group input:focus, .editor-group textarea:focus { border-color: var(--verde); }
-  .editor-actions { display: flex; gap: 1rem; margin-top: 1.5rem; }
-  .btn-save { background: var(--verde); color: white; border: none; padding: 11px 24px; border-radius: 50px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; }
-  .btn-cancel { background: #f0f0f0; color: var(--texto); border: none; padding: 11px 24px; border-radius: 50px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; }
-  .editor-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-  .etab { padding: 7px 16px; border-radius: 50px; border: 1.5px solid #e0e0e0; background: transparent; cursor: pointer; font-size: 0.85rem; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
-  .etab.active { background: var(--verde); color: white; border-color: var(--verde); }
-  .etab-content { display: none; }
-  .etab-content.active { display: block; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.45); text-decoration: none; }
+  .footer-links a:hover { color: var(--green-mid); }
 
   @media (max-width: 768px) {
-    .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
-    .phone-wrap { display: none; }
-    nav ul { display: none; }
-    .publico-grid, .pricing-grid { grid-template-columns: 1fr; }
+    .hero { grid-template-columns: 1fr; text-align: center; }
+    .hero-actions { justify-content: center; }
+    .hero-visual { display: none; }
+    .posts-grid { grid-template-columns: 1fr; }
+    .post-card.featured { grid-column: 1; }
+    nav .nav-links { display: none; }
+    .stats-bar { gap: 2rem; }
   }
 </style>
 </head>
@@ -254,504 +538,519 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="logo">
+  <a class="nav-logo" href="#">
     <div class="logo-icon">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5 14.5 7.6 14.5 9 13.4 11.5 12 11.5z"/></svg>
     </div>
     FlowHabit
   </a>
-  <ul>
-    <li><a href="#caracteristicas">Características</a></li>
-    <li><a href="#publico">Para quién</a></li>
+  <ul class="nav-links">
+    <li><a href="#features">Funciones</a></li>
+    <li><a href="#tendencias">Tendencias</a></li>
     <li><a href="#precios">Precios</a></li>
-    <li><a href="#blog">Blog</a></li>
-    <li><a href="#descargar" class="nav-cta">Descargar</a></li>
+    <li><a href="#opiniones">Opiniones</a></li>
+    <li><a href="#descarga" class="nav-cta">Descargar gratis</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="inicio">
-  <div class="hero-inner">
-    <div>
-      <div class="hero-badge">🌿 Bienestar en Movimiento</div>
-      <h1>Tu hábito,<br><span>a tu ritmo.</span></h1>
-      <p>FlowHabit es la app que transforma el bienestar en algo invisible: micro-rutinas de máximo 15 minutos, recordatorios inteligentes y gamificación para profesionales con agendas saturadas.</p>
-      <div class="hero-btns">
-        <a href="#descargar" class="btn-primary">📱 Descargar gratis</a>
-        <a href="#caracteristicas" class="btn-secondary">Ver características →</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat">
-          <div class="stat-num">391K</div>
-          <div class="stat-label">Mercado disponible</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">15 min</div>
-          <div class="stat-label">Rutinas máximas</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">S/ 25</div>
-          <div class="stat-label">Plan mensual</div>
-        </div>
-      </div>
+<section style="padding:0;">
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge"><span></span> App de hábitos &amp; bienestar laboral</div>
+    <h1>Tu bienestar,<br><em>a tu ritmo</em> de trabajo</h1>
+    <p>Micro-rutinas de hasta 15 minutos, recordatorios inteligentes y modo corte mental. Sin anuncios, sin fricciones. Solo tú y tus hábitos.</p>
+    <div class="hero-actions">
+      <a href="#descarga" class="btn-primary">
+        <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+        Descargar gratis
+      </a>
+      <a href="#tendencias" class="btn-ghost">Ver publicaciones →</a>
     </div>
-    <div class="phone-wrap">
-      <div class="phone">
-        <div class="notch"></div>
-        <div class="phone-header">
-          <div class="time">09:32 AM · Buenos días 🌱</div>
-          <h3>Hola, Andrea</h3>
-          <p>3 hábitos completados hoy</p>
+  </div>
+  <div class="hero-visual">
+    <div class="phone-mockup">
+      <div class="phone-screen">
+        <div class="phone-notch"></div>
+        <div class="phone-ui-greeting">Buenos días, Andrea 👋</div>
+        <div class="phone-ui-sub">Tienes 3 hábitos pendientes hoy</div>
+        <div class="phone-ui-card">
+          <div class="phone-ui-card-label">Progreso semanal</div>
+          <div class="phone-ui-card-title">¡Vas al 74%! Sigue así 🔥</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:74%"></div></div>
         </div>
-        <div class="phone-body">
-          <div class="habit-card">
-            <div class="habit-icon h-green">💧</div>
-            <div class="habit-info">
-              <span>Hidratación</span>
-              <small>2 de 8 vasos</small>
-            </div>
-            <div class="habit-check">✓</div>
+        <div class="phone-habits">
+          <div class="habit-item">
+            <div class="habit-check done"></div>
+            <span class="habit-text">Hidratación matutina</span>
+            <span class="habit-time">7:00 AM</span>
           </div>
-          <div class="habit-card">
-            <div class="habit-icon h-blue">🧘</div>
-            <div class="habit-info">
-              <span>Pausa activa</span>
-              <small>5 min · Pendiente</small>
-            </div>
-            <div class="habit-check" style="background:#eee; color:#aaa;">→</div>
+          <div class="habit-item">
+            <div class="habit-check done"></div>
+            <span class="habit-text">Pausa activa (10 min)</span>
+            <span class="habit-time">10:30 AM</span>
           </div>
-          <div class="habit-card">
-            <div class="habit-icon h-amber">🥗</div>
-            <div class="habit-info">
-              <span>Alimentación</span>
-              <small>Almuerzo registrado</small>
-            </div>
-            <div class="habit-check">✓</div>
+          <div class="habit-item">
+            <div class="habit-check"></div>
+            <span class="habit-text">Modo corte mental</span>
+            <span class="habit-time">6:00 PM</span>
           </div>
-          <div class="progress-bar-wrap">
-            <small>Progreso semanal</small>
-            <div class="pb"><div class="pb-fill" style="width:68%"></div></div>
-            <div class="points">🏆 340 puntos · Nivel Bronce</div>
+          <div class="habit-item">
+            <div class="habit-check"></div>
+            <span class="habit-text">Estiramiento lumbar</span>
+            <span class="habit-time">8:00 PM</span>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- CARACTERÍSTICAS -->
-<section class="features" id="caracteristicas">
-  <div class="container">
-    <div class="section-label">Funciones clave</div>
-    <h2 class="section-title">Todo lo que necesitas,<br>sin lo que no necesitas</h2>
-    <p class="section-sub">Diseñado para profesionales que tienen poco tiempo pero grandes metas de bienestar.</p>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feat-icon">🧠</div>
-        <h3>Recordatorios inteligentes</h3>
-        <p>La app aprende tu flujo de trabajo y sugiere el hábito correcto en el momento oportuno. Sin interrumpir tus reuniones ni bloques de concentración.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feat-icon">⚡</div>
-        <h3>Modo Corte Mental</h3>
-        <p>Al terminar tu jornada, oculta notificaciones laborales y activa una pausa de transición de 2 minutos. Tu cerebro necesita saber cuándo termina el trabajo.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feat-icon">🎮</div>
-        <h3>Gamificación real</h3>
-        <p>Insignias, niveles y recompensas que celebran tu constancia. La disciplina se convierte en una experiencia gratificante, no en una carga más.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feat-icon">🔔</div>
-        <h3>Alerta de saturación</h3>
-        <p>Detecta periodos de alta carga mental y sugiere pausas activas. Solo 2 avisos útiles al día. Sin spam, sin distracciones innecesarias.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feat-icon">🔒</div>
-        <h3>Privacidad total</h3>
-        <p>Todos los análisis de comportamiento se procesan localmente en tu teléfono. Sin anuncios, sin venta de datos. Una pantalla "Mi privacidad" muestra todo en 3 líneas.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feat-icon">⏱️</div>
-        <h3>Micro-rutinas de 5–15 min</h3>
-        <p>Registra hábitos en menos de 30 segundos. Rutinas adaptadas a tus huecos de agenda reales. El "modo solo hoy" para días de alta carga laboral.</p>
-      </div>
+    <div class="floating-badge fb-left">
+      <div class="fb-icon green">🧘</div>
+      <div class="fb-text"><strong>Pausa activa</strong><span>En 5 minutos</span></div>
     </div>
-  </div>
-</section>
-
-<!-- PARA QUIÉN -->
-<section class="publico" id="publico">
-  <div class="container">
-    <div class="section-label">Público objetivo</div>
-    <h2 class="section-title">¿FlowHabit es para ti?</h2>
-    <p class="section-sub">Diseñado a partir de entrevistas a 20 profesionales en Lima que enfrentaban los mismos problemas que tú.</p>
-    <div class="publico-grid">
-      <div class="publico-card">
-        <span class="tag">Profesional independiente</span>
-        <h3>Gestiona tu negocio y tu bienestar</h3>
-        <ul>
-          <li>Soluciones de baja fricción que respetan tu agenda variable</li>
-          <li>Micro-hábitos que no interrumpen tu tiempo de generación de ingresos</li>
-          <li>Gestión del estrés y el agotamiento por autogestión</li>
-          <li>Sincronización opcional con Google Calendar y Outlook</li>
-          <li>Modo "solo hoy" para tus días más caóticos</li>
-        </ul>
-      </div>
-      <div class="publico-card">
-        <span class="tag">Colaborador / Empleado</span>
-        <h3>Separa el trabajo de tu vida personal</h3>
-        <ul>
-          <li>Pausas activas guiadas que no interrumpen bloques de concentración</li>
-          <li>Modo Corte Mental para modalidades remota e híbrida</li>
-          <li>Contrarrestar el sedentarismo de horas frente al computador</li>
-          <li>Retos y medallas que combaten la monotonía laboral</li>
-          <li>Disponible mediante convenios corporativos con tu empresa</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRECIOS -->
-<section class="pricing" id="precios">
-  <div class="container">
-    <div class="section-label">Planes</div>
-    <h2 class="section-title">Empieza gratis, escala cuando quieras</h2>
-    <p class="section-sub">Prueba gratuita de 14 días en el plan Premium. Sin compromisos.</p>
-    <div class="pricing-grid">
-      <div class="price-card">
-        <h3>Free</h3>
-        <div class="price">S/ 0<sub>/mes</sub></div>
-        <p class="price-desc">Para empezar sin riesgos</p>
-        <ul class="price-features">
-          <li>Hasta 3 hábitos activos</li>
-          <li>Recordatorios básicos</li>
-          <li>Estadísticas semanales</li>
-          <li>Interfaz sin anuncios</li>
-        </ul>
-        <button class="btn-plan" onclick="document.getElementById('descarga').scrollIntoView({behavior:'smooth'})">Descargar gratis</button>
-      </div>
-      <div class="price-card featured">
-        <span class="featured-badge">⭐ Más popular</span>
-        <h3>Premium Individual</h3>
-        <div class="price">S/ 25<sub>/mes</sub></div>
-        <p class="price-desc">Para el profesional que toma en serio su bienestar</p>
-        <ul class="price-features">
-          <li>Hábitos ilimitados</li>
-          <li>Recordatorios inteligentes</li>
-          <li>Modo Corte Mental</li>
-          <li>Alerta de saturación</li>
-          <li>Gamificación completa</li>
-          <li>Pantalla de privacidad</li>
-          <li>Sincronización de calendario</li>
-        </ul>
-        <button class="btn-plan featured-btn" onclick="document.getElementById('descarga').scrollIntoView({behavior:'smooth'})">Probar 14 días gratis</button>
-      </div>
-      <div class="price-card">
-        <h3>Corporativo</h3>
-        <div class="price" style="font-size:1.8rem;">Consultar</div>
-        <p class="price-desc">Para empresas que invierten en su equipo</p>
-        <ul class="price-features">
-          <li>Todo lo del plan Premium</li>
-          <li>Panel de bienestar del equipo</li>
-          <li>Integración con RRHH</li>
-          <li>Soporte dedicado</li>
-          <li>Facturación empresarial</li>
-        </ul>
-        <button class="btn-plan">Contactar ventas</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BLOG -->
-<section class="blog" id="blog">
-  <div class="container">
-    <div class="section-label">Blog de bienestar</div>
-    <h2 class="section-title">Publicaciones de impacto</h2>
-    <p class="section-sub">Videos, imágenes y artículos para ayudarte a tomar el control de tu salud sin sacrificar tu productividad.</p>
-
-    <!-- POST 1 - Video destacado -->
-    <article class="post-full" id="post1">
-      <div class="post-tag-line"><span class="ptag ptag-prod">Productividad</span><span class="pdate">15 mayo, 2026</span></div>
-      <h2 class="post-title">Por qué el agotamiento se ha normalizado como símbolo de éxito profesional</h2>
-      <div class="post-video-wrap">
-        <iframe src="https://www.youtube.com/embed/zqdfFdUe964" title="Burnout y agotamiento laboral" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      <div class="post-text">
-        <p>Existe una creencia extendida entre los profesionales limeños: si no estás ocupado, no eres exitoso. Este fenómeno, que los psicólogos llaman <strong>"glorificación del ajetreo"</strong>, ha generado una crisis silenciosa de bienestar en Lima Moderna.</p>
-        <p>Nuestras entrevistas a 20 profesionales revelaron que el agotamiento se ha normalizado como señal de éxito, no como alerta. Según el INEI (2026), Lima supera los 10 millones de habitantes y su PEA ocupada creció 6.1%, pero crecer económicamente no significa estar más saludables.</p>
-        <div class="post-quote">"El ocio digital —redes y series— actúa como una falsa recompensa que impide un descanso cerebral real."</div>
-        <p><strong>¿La solución?</strong> Micro-hábitos de baja fricción que se insertan en los espacios libres de tu día. FlowHabit nació exactamente para eso: el bienestar que no interrumpe tu trabajo, sino que lo potencia.</p>
-      </div>
-    </article>
-
-    <!-- POST 2 - Imagen + galería -->
-    <article class="post-full post-alt" id="post2">
-      <div class="post-tag-line"><span class="ptag ptag-bien">Bienestar</span><span class="pdate">8 mayo, 2026</span></div>
-      <h2 class="post-title">5 micro-hábitos de 5 minutos que puedes hacer entre reuniones</h2>
-      <div class="post-hero-img">
-        <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=900&q=80&auto=format&fit=crop" alt="Persona haciendo pausa activa en oficina" loading="lazy">
-        <div class="img-caption">📸 Pausas activas: pequeñas acciones, grandes resultados</div>
-      </div>
-      <div class="post-text">
-        <p>No necesitas una hora libre para cuidarte. La ciencia es clara: <strong>pequeñas interrupciones activas son más efectivas que una sola sesión larga</strong>. Aquí los 5 hábitos que FlowHabit te sugiere en tus huecos de agenda:</p>
-      </div>
-      <div class="habit-steps">
-        <div class="hs"><div class="hs-num">01</div><div class="hs-info"><strong>Respiración 4-7-8</strong><p>Inhala 4 seg, aguanta 7, exhala 8. Tres repeticiones bajan el cortisol. Ideal antes de una reunión difícil.</p></div></div>
-        <div class="hs"><div class="hs-num">02</div><div class="hs-info"><strong>Estiramiento cervical</strong><p>Inclina la cabeza hacia cada hombro 30 segundos. Contrarresta horas frente a la pantalla.</p></div></div>
-        <div class="hs"><div class="hs-num">03</div><div class="hs-info"><strong>Hidratación consciente</strong><p>Un vaso de agua cada hora. FlowHabit te lo recuerda justo cuando tienes ese hueco libre.</p></div></div>
-        <div class="hs"><div class="hs-num">04</div><div class="hs-info"><strong>Caminar 250 pasos</strong><p>Ve al baño más lejano, sube las escaleras una vez. Tu corazón lo agradece.</p></div></div>
-        <div class="hs"><div class="hs-num">05</div><div class="hs-info"><strong>Micro-meditación visual</strong><p>Mira un objeto lejano 60 segundos. Relaja los músculos oculares tensos por horas de pantalla.</p></div></div>
-      </div>
-      <div class="post-gallery">
-        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&q=75&auto=format&fit=crop" alt="Meditación" loading="lazy">
-        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=75&auto=format&fit=crop" alt="Hidratación" loading="lazy">
-        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&q=75&auto=format&fit=crop" alt="Estiramiento" loading="lazy">
-      </div>
-    </article>
-
-    <!-- POST 3 - Video + estadísticas -->
-    <article class="post-full" id="post3">
-      <div class="post-tag-line"><span class="ptag ptag-gami">Gamificación</span><span class="pdate">1 mayo, 2026</span></div>
-      <h2 class="post-title">Cómo la gamificación convierte la disciplina en un juego que quieres ganar</h2>
-      <div class="post-two-col">
-        <div class="post-video-wrap small-video">
-          <iframe src="https://www.youtube.com/embed/CO3MNkFLzaE" title="Gamificación y hábitos" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div class="post-text">
-          <p>El cerebro no distingue entre lograr un hito profesional y desbloquear una insignia en una app: ambos liberan dopamina. Esto es el principio detrás del diseño de FlowHabit.</p>
-          <p>Nuestros usuarios validaron que la gamificación funciona, <strong>con una condición clave: que no se sienta como obligación adicional</strong>. Por eso en FlowHabit todo es opcional y personalizable.</p>
-          <div class="stats-row">
-            <div class="stat-box"><span class="sb-num">87%</span><span class="sb-label">Usuarios mantienen hábitos más de 30 días con gamificación</span></div>
-            <div class="stat-box"><span class="sb-num">3x</span><span class="sb-label">Mayor retención vs apps sin sistema de recompensas</span></div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- POST 4 - Imagen grande + texto -->
-    <article class="post-full post-alt" id="post4">
-      <div class="post-tag-line"><span class="ptag ptag-priv">Privacidad</span><span class="pdate">22 abril, 2026</span></div>
-      <h2 class="post-title">¿Por qué FlowHabit nunca venderá tus datos de salud?</h2>
-      <div class="post-two-col reverse">
-        <div class="post-text">
-          <p>Cuando instalas una app de bienestar, estás compartiendo algo íntimo: tus patrones de estrés, tu alimentación, tu descanso. Esta información vale mucho dinero para aseguradoras y anunciantes.</p>
-          <p>FlowHabit tomó la decisión contraria: <strong>todo el análisis de comportamiento se procesa localmente en tu teléfono</strong>, sin enviar datos sensibles a la nube.</p>
-          <div class="post-quote">"La desconfianza es la razón #1 por la que la gente abandona las apps de salud."</div>
-          <p>La pantalla <strong>"Mi Privacidad"</strong> te muestra en 3 líneas exactas: qué datos guarda la app, dónde están, y cuándo fue el último borrado. Sin letra pequeña.</p>
-        </div>
-        <div class="post-side-img">
-          <img src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=500&q=80&auto=format&fit=crop" alt="Seguridad y privacidad de datos" loading="lazy">
-        </div>
-      </div>
-    </article>
-
-    <!-- POST 5 - Infografía + video + datos Lima -->
-    <article class="post-full" id="post5">
-      <div class="post-tag-line"><span class="ptag ptag-lima">Lima</span><span class="pdate">15 abril, 2026</span></div>
-      <h2 class="post-title">El sedentarismo en Lima Moderna: números que deberían preocuparte</h2>
-      <div class="post-hero-img">
-        <img src="https://images.unsplash.com/photo-1555992336-fb0d29498b13?w=900&q=80&auto=format&fit=crop" alt="Vista aérea Lima Moderna" loading="lazy">
-        <div class="img-caption">📍 Lima Moderna: Miraflores, San Isidro, Surco, La Molina, San Borja</div>
-      </div>
-      <div class="post-text">
-        <p>Los distritos de Lima Moderna concentran a los profesionales más productivos del Perú, y también a los más sedentarios. Aquí los datos reales que sustentan la propuesta de FlowHabit:</p>
-      </div>
-      <div class="infografia">
-        <div class="info-card ic-green"><div class="ic-num">10.1M</div><div class="ic-label">Habitantes en Lima Metropolitana (INEI, 2026)</div></div>
-        <div class="info-card ic-teal"><div class="ic-num">686K</div><div class="ic-label">Mercado potencial de FlowHabit (NSE A-B, 20–45 años)</div></div>
-        <div class="info-card ic-blue"><div class="ic-num">391K</div><div class="ic-label">Mercado disponible: profesionales que buscan solución activa</div></div>
-        <div class="info-card ic-amber"><div class="ic-num">87%</div><div class="ic-label">Entrevistados con dolores lumbares por sedentarismo</div></div>
-        <div class="info-card ic-coral"><div class="ic-num">79%</div><div class="ic-label">Con fatiga visual por exceso de pantalla</div></div>
-        <div class="info-card ic-purple"><div class="ic-num">71%</div><div class="ic-label">Dificultad para desconectarse del trabajo en casa</div></div>
-      </div>
-      <div class="post-video-wrap" style="margin-top:2rem;">
-        <iframe src="https://www.youtube.com/embed/RLp4BTCa3uY" title="Sedentarismo laboral y soluciones" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      <div class="post-text" style="margin-top:1.5rem;">
-        <p>FlowHabit está diseñado específicamente para este contexto: no propone cambios de vida radicales, sino <strong>micro-transformaciones que se integran en la realidad laboral limeña</strong> sin añadir fricción al día a día.</p>
-      </div>
-    </article>
-
-  </div>
-</section>
-
-<!-- TESTIMONIOS -->
-<section class="testimonios" id="testimonios">
-  <div class="container">
-    <div class="section-label">Testimonios</div>
-    <h2 class="section-title">Lo que dicen nuestros usuarios</h2>
-    <div class="test-grid">
-      <div class="test-card">
-        <div class="stars">★★★★★</div>
-        <p>"Antes sentía que cuidarme era una tarea más. FlowHabit cambió eso: sus micro-rutinas encajan perfectamente en mis huecos de agenda sin que lo sienta como una obligación."</p>
-        <div class="test-autor">
-          <div class="avatar">NG</div>
-          <div class="test-autor-info">
-            <strong>Nestor G.</strong>
-            <span>Consultor independiente, Lima</span>
-          </div>
-        </div>
-      </div>
-      <div class="test-card">
-        <div class="stars">★★★★★</div>
-        <p>"El Modo Corte Mental fue revelador. Trabajo en modalidad híbrida y me costaba desconectarme. Ahora tengo un límite claro entre mi trabajo y mi vida personal."</p>
-        <div class="test-autor">
-          <div class="avatar">RC</div>
-          <div class="test-autor-info">
-            <strong>Rebeca C.</strong>
-            <span>Especialista de marketing, Miraflores</span>
-          </div>
-        </div>
-      </div>
-      <div class="test-card">
-        <div class="stars">★★★★☆</div>
-        <p>"La Alerta de Saturación es increíble. Me avisa cuando llevo demasiado tiempo concentrada y me sugiere una pausa de 5 minutos. Mi rendimiento mejoró notablemente."</p>
-        <div class="test-autor">
-          <div class="avatar">AH</div>
-          <div class="test-autor-info">
-            <strong>Andrea H.</strong>
-            <span>Project Manager, San Isidro</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA FINAL / DESCARGA -->
-<section class="cta-final" id="descargar">
-  <div id="descarga">
-    <h2>Empieza hoy. Gratis.</h2>
-    <p>Únete a los profesionales de Lima que ya están integrando el bienestar en su rutina laboral sin fricciones.</p>
-    <div class="cta-btns">
-      <a href="#" class="btn-white">📱 App Store</a>
-      <a href="#" class="btn-white">▶ Google Play</a>
-      <a href="#" class="btn-outline-white">¿Eres empresa? Hablemos</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-logo">FlowHabit</div>
-  <div class="footer-links">
-    <a href="#inicio">Inicio</a>
-    <a href="#caracteristicas">Características</a>
-    <a href="#precios">Precios</a>
-    <a href="#blog">Blog</a>
-    <a href="#">Privacidad</a>
-    <a href="#">Términos</a>
-    <a href="#">Contacto</a>
-  </div>
-  <p>© 2026 FlowHabit · Grupo 6 · USIL · Lima, Perú · Hecho con 💚 para profesionales ocupados</p>
-</footer>
-
-<!-- EDITOR FLOTANTE -->
-<button class="edit-btn" onclick="openEditor()">✏️ Editar página</button>
-
-<div class="editor-panel" id="editorPanel">
-  <div class="editor-inner">
-    <button class="editor-close" onclick="closeEditor()">✕</button>
-    <h2>✏️ Editor de contenido</h2>
-    <div class="editor-tabs">
-      <button class="etab active" onclick="switchTab('hero')">Hero</button>
-      <button class="etab" onclick="switchTab('blog0')">Post 1</button>
-      <button class="etab" onclick="switchTab('blog1')">Post 2</button>
-      <button class="etab" onclick="switchTab('blog2')">Post 3</button>
-      <button class="etab" onclick="switchTab('blog3')">Post 4</button>
-      <button class="etab" onclick="switchTab('blog4')">Post 5</button>
-    </div>
-
-    <div class="etab-content active" id="tab-hero">
-      <div class="editor-group">
-        <label>Título principal (línea 1)</label>
-        <input type="text" id="e-hero-t1" value="Tu hábito,">
-      </div>
-      <div class="editor-group">
-        <label>Título principal (línea 2)</label>
-        <input type="text" id="e-hero-t2" value="a tu ritmo.">
-      </div>
-      <div class="editor-group">
-        <label>Subtítulo del Hero</label>
-        <textarea id="e-hero-sub" rows="3">FlowHabit es la app que transforma el bienestar en algo invisible: micro-rutinas de máximo 15 minutos, recordatorios inteligentes y gamificación para profesionales con agendas saturadas.</textarea>
-      </div>
-    </div>
-
-    <div class="etab-content" id="tab-blog0"></div>
-    <div class="etab-content" id="tab-blog1"></div>
-    <div class="etab-content" id="tab-blog2"></div>
-    <div class="etab-content" id="tab-blog3"></div>
-    <div class="etab-content" id="tab-blog4"></div>
-
-    <div class="editor-actions">
-      <button class="btn-save" onclick="saveChanges()">Guardar cambios</button>
-      <button class="btn-cancel" onclick="closeEditor()">Cancelar</button>
+    <div class="floating-badge fb-right">
+      <div class="fb-icon amber">🏆</div>
+      <div class="fb-text"><strong>Racha de 12 días</strong><span>¡Récord personal!</span></div>
     </div>
   </div>
 </div>
+</section>
 
-<script>
-function openEditor() {
-  buildBlogEditors();
-  document.getElementById('editorPanel').classList.add('open');
-}
-function closeEditor() {
-  document.getElementById('editorPanel').classList.remove('open');
-}
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">391K</div><div class="stat-label">Profesionales en Lima</div></div>
+  <div class="stat-item"><div class="stat-num">87%</div><div class="stat-label">Han normalizado el burnout</div></div>
+  <div class="stat-item"><div class="stat-num">15 min</div><div class="stat-label">Es todo lo que necesitas</div></div>
+  <div class="stat-item"><div class="stat-num">0</div><div class="stat-label">Anuncios en la app</div></div>
+</div>
 
-const editableFields = [
-  { id: 'p1-title', sel: '#post1 .post-title' },
-  { id: 'p2-title', sel: '#post2 .post-title' },
-  { id: 'p3-title', sel: '#post3 .post-title' },
-  { id: 'p4-title', sel: '#post4 .post-title' },
-  { id: 'p5-title', sel: '#post5 .post-title' },
-];
+<!-- FEATURES -->
+<section id="features">
+<div class="section-inner">
+  <div class="section-tag">Funciones</div>
+  <h2 class="section-title">Diseñado para agendas saturadas</h2>
+  <p class="section-sub">Cada función de FlowHabit fue validada con más de 20 profesionales reales en Lima. Sin relleno, solo lo que funciona.</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">⏱️</div>
+      <h3>Micro-rutinas de hasta 15 min</h3>
+      <p>Se adaptan a los huecos reales de tu agenda. Registro en menos de 30 segundos. No más excusas de "no tengo tiempo".</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔔</div>
+      <h3>Recordatorios inteligentes</h3>
+      <p>Solo 2 avisos útiles al día. Aprenden de tu flujo de trabajo y sugieren el hábito correcto en el momento oportuno, sin saturarte.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🧠</div>
+      <h3>Modo Corte Mental</h3>
+      <p>Al terminar la jornada, oculta notificaciones laborales y activa una pausa de transición de 2 minutos. Tu vida personal es tuya.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3>Alerta de saturación</h3>
+      <p>Detecta periodos de alta carga mental y sugiere pausas activas o ejercicios de respiración antes de que llegues al límite.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎮</div>
+      <h3>Gamificación sin presión</h3>
+      <p>Sistema de recompensas, insignias y racha de días. La disciplina se vuelve gratificante, no una carga extra.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔒</div>
+      <h3>Privacidad total</h3>
+      <p>Pantalla "Mi privacidad" en 3 líneas: qué datos guarda, dónde están y el último borrado. Sin anuncios. Sin venta de datos.</p>
+    </div>
+  </div>
+</div>
+</section>
 
-function buildBlogEditors() {
-  const tabs = ['blog0','blog1','blog2','blog3','blog4'];
-  const postIds = ['post1','post2','post3','post4','post5'];
-  tabs.forEach((t, i) => {
-    const tab = document.getElementById('tab-' + t);
-    const titleEl = document.querySelector('#' + postIds[i] + ' .post-title');
-    const quoteEl = document.querySelector('#' + postIds[i] + ' .post-quote');
-    tab.innerHTML = `
-      <div class="editor-group">
-        <label>Título</label>
-        <input type="text" id="e-${t}-title" value="${(titleEl ? titleEl.textContent : '').replace(/"/g,'&quot;')}">
+<!-- IMPACT POSTS -->
+<section id="tendencias" class="impact-section">
+<div class="section-inner">
+  <div class="posts-header">
+    <div>
+      <div class="section-tag">Publicaciones de impacto</div>
+      <h2 class="section-title">Lo que debes saber<br>sobre bienestar laboral</h2>
+    </div>
+    <p class="section-sub" style="max-width:340px">Tendencias reales, datos duros y reflexiones que están cambiando cómo los profesionales cuidan su salud.</p>
+  </div>
+
+  <div class="posts-grid">
+
+    <!-- POST 1: VIDEO DESTACADO - Burnout Epidemic -->
+    <div class="post-card featured">
+      <div class="post-visual">
+        <div class="anim-video v1">
+          <div class="pulse-ring"></div>
+          <div class="pulse-ring"></div>
+          <div class="pulse-ring"></div>
+          <div class="center-icon">🔥</div>
+          <div class="stat-bubble" style="top:24px;left:24px;">
+            <strong>77%</strong>
+            de profesionales en LATAM
+            reportan burnout en 2025
+          </div>
+          <div class="stat-bubble" style="bottom:24px;right:24px;text-align:right">
+            <strong>3.4h</strong>
+            promedio diario perdido
+            por baja concentración
+          </div>
+          <div style="position:absolute;bottom:24px;left:24px;color:rgba(255,255,255,0.6);font-size:0.7rem;">
+            ▶ Mira la animación
+          </div>
+        </div>
+        <div class="post-type-badge badge-video">🎬 Video</div>
       </div>
-      ${quoteEl ? `<div class="editor-group"><label>Cita destacada</label><textarea id="e-${t}-quote" rows="2">${quoteEl.textContent.replace(/"/g,'&quot;')}</textarea></div>` : ''}
-    `;
-  });
-}
+      <div class="post-body">
+        <div class="post-meta">Tendencia global · Bienestar</div>
+        <h3>La epidemia silenciosa del burnout: el 77% de profesionales ya lo sufre</h3>
+        <p>En 2025, el burnout dejó de ser una excepción y se convirtió en la norma. Latinoamérica lidera los índices de agotamiento profesional según la OMS. Profesionales entre 25 y 40 años pierden hasta 3.4 horas diarias de productividad efectiva por fatiga mental acumulada. La solución no está en trabajar menos, sino en gestionar mejor los límites y los hábitos de recuperación.</p>
+        <div class="post-footer">
+          <span class="post-date">Mayo 2026</span>
+          <span class="post-tag">Salud mental</span>
+        </div>
+      </div>
+    </div>
 
-function switchTab(name) {
-  document.querySelectorAll('.etab-content').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.etab').forEach(t => t.classList.remove('active'));
-  document.getElementById('tab-' + name).classList.add('active');
-  event.target.classList.add('active');
-}
+    <!-- POST 2: VIDEO - Sedentarismo Digital -->
+    <div class="post-card">
+      <div class="post-visual">
+        <div class="anim-video v3" style="background:linear-gradient(135deg,#1a0533,#3b1068);">
+          <svg class="v3-clock" viewBox="0 0 90 90" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-65%);">
+            <circle class="v3-ring" cx="45" cy="45" r="38"/>
+            <circle class="v3-progress" cx="45" cy="45" r="38" stroke-dashoffset="251" transform="rotate(-90 45 45)">
+              <animate attributeName="stroke-dashoffset" from="251" to="0" dur="5s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+          <div class="v3-number" style="top:42%;font-size:1.1rem;">📱</div>
+          <div class="v3-labels">
+            <div class="v3-label"><strong>8.4h</strong><span>frente a pantallas</span></div>
+            <div class="v3-label"><strong>+62%</strong><span>dolor lumbar</span></div>
+            <div class="v3-label"><strong>-28%</strong><span>energía tarde</span></div>
+          </div>
+          <div style="position:absolute;top:24px;left:0;right:0;text-align:center;color:rgba(255,255,255,0.7);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;">Sedentarismo digital · 2026</div>
+        </div>
+        <div class="post-type-badge badge-video">🎬 Video</div>
+      </div>
+      <div class="post-body">
+        <div class="post-meta">Salud física · Tendencia</div>
+        <h3>8 horas al día frente a pantallas: el cuerpo paga la factura</h3>
+        <p>El trabajador híbrido promedio pasa 8.4 horas diarias sentado frente a una pantalla. El resultado: un 62% reporta dolor lumbar crónico y un 28% pierde energía efectiva en las tardes. Las pausas activas de 5 minutos cada hora revierten estos efectos en menos de 3 semanas.</p>
+        <div class="post-footer">
+          <span class="post-date">Abril 2026</span>
+          <span class="post-tag">Salud física</span>
+        </div>
+      </div>
+    </div>
 
-function saveChanges() {
-  const t1 = document.getElementById('e-hero-t1').value;
-  const t2 = document.getElementById('e-hero-t2').value;
-  const sub = document.getElementById('e-hero-sub').value;
-  document.querySelector('.hero h1').innerHTML = t1 + '<br><span>' + t2 + '</span>';
-  document.querySelector('.hero p').textContent = sub;
+    <!-- POST 3: IMAGEN - Micro-hábitos -->
+    <div class="post-card">
+      <div class="post-visual" style="background:#E1F5EE;">
+        <svg class="img-illustration" viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="220" fill="#E1F5EE"/>
+          <!-- Background circles -->
+          <circle cx="320" cy="40" r="80" fill="#9FE1CB" opacity="0.3"/>
+          <circle cx="80" cy="180" r="60" fill="#1D9E75" opacity="0.15"/>
+          <!-- Calendar grid -->
+          <rect x="30" y="30" width="200" height="155" rx="12" fill="white" stroke="#9FE1CB" stroke-width="1"/>
+          <rect x="30" y="30" width="200" height="36" rx="12" fill="#1D9E75"/>
+          <rect x="30" y="54" width="200" height="12" fill="#1D9E75"/>
+          <text x="130" y="53" text-anchor="middle" fill="white" font-size="13" font-family="Syne,sans-serif" font-weight="700">Mayo 2026</text>
+          <!-- Days header -->
+          <text x="50" y="82" fill="#9FE1CB" font-size="8" font-family="DM Sans,sans-serif" font-weight="500">L</text>
+          <text x="75" y="82" fill="#9FE1CB" font-size="8" font-family="DM Sans,sans-serif" font-weight="500">M</text>
+          <text x="100" y="82" fill="#9FE1CB" font-size="8" font-family="DM Sans,sans-serif" font-weight="500">X</text>
+          <text x="125" y="82" fill="#9FE1CB" font-size="8" font-family="DM Sans,sans-serif" font-weight="500">J</text>
+          <text x="150" y="82" fill="#9FE1CB" font-size="8" font-family="DM Sans,sans-serif" font-weight="500">V</text>
+          <text x="175" y="82" fill="#9FE1CB" font-size="8" font-family="DM Sans,sans-serif" font-weight="500">S</text>
+          <text x="200" y="82" fill="#9FE1CB" font-size="8" font-family="DM Sans,sans-serif" font-weight="500">D</text>
+          <!-- Habit dots -->
+          <circle cx="50" cy="100" r="10" fill="#1D9E75"/><text x="50" y="104" text-anchor="middle" fill="white" font-size="8">✓</text>
+          <circle cx="75" cy="100" r="10" fill="#1D9E75"/><text x="75" y="104" text-anchor="middle" fill="white" font-size="8">✓</text>
+          <circle cx="100" cy="100" r="10" fill="#1D9E75"/><text x="100" y="104" text-anchor="middle" fill="white" font-size="8">✓</text>
+          <circle cx="125" cy="100" r="10" fill="#1D9E75"/><text x="125" y="104" text-anchor="middle" fill="white" font-size="8">✓</text>
+          <circle cx="150" cy="100" r="10" fill="#5DCAA5"/><text x="150" y="104" text-anchor="middle" fill="white" font-size="8">✓</text>
+          <circle cx="175" cy="100" r="10" fill="#E1F5EE" stroke="#9FE1CB" stroke-width="1"/>
+          <circle cx="200" cy="100" r="10" fill="#E1F5EE" stroke="#9FE1CB" stroke-width="1"/>
+          <circle cx="50" cy="125" r="10" fill="#1D9E75"/><text x="50" y="129" text-anchor="middle" fill="white" font-size="8">✓</text>
+          <circle cx="75" cy="125" r="10" fill="#1D9E75"/><text x="75" y="129" text-anchor="middle" fill="white" font-size="8">✓</text>
+          <circle cx="100" cy="125" r="10" fill="#1D9E75"/><text x="100" y="129" text-anchor="middle" fill="white" font-size="8">✓</text>
+          <circle cx="125" cy="125" r="10" fill="#5DCAA5"/><text x="125" y="129" text-anchor="middle" fill="white" font-size="8">✓</text>
+          <circle cx="150" cy="125" r="10" fill="#5DCAA5"/><text x="150" y="129" text-anchor="middle" fill="white" font-size="8">✓</text>
+          <!-- Streak badge -->
+          <rect x="250" y="60" width="120" height="100" rx="16" fill="#0F6E56"/>
+          <text x="310" y="88" text-anchor="middle" fill="white" font-size="22" font-family="Syne,sans-serif" font-weight="800">🔥</text>
+          <text x="310" y="115" text-anchor="middle" fill="#9FE1CB" font-size="24" font-family="Syne,sans-serif" font-weight="800">21</text>
+          <text x="310" y="132" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9" font-family="DM Sans,sans-serif">días de racha</text>
+          <text x="310" y="150" text-anchor="middle" fill="#5DCAA5" font-size="8" font-family="DM Sans,sans-serif">¡Récord personal!</text>
+          <!-- Labels -->
+          <text x="30" y="200" fill="#0F6E56" font-size="11" font-family="Syne,sans-serif" font-weight="700">La constancia es el único hábito que importa</text>
+        </svg>
+        <div class="post-type-badge badge-image">📸 Imagen</div>
+      </div>
+      <div class="post-body">
+        <div class="post-meta">Productividad · Psicología</div>
+        <h3>21 días y el hábito ya es tuyo: la ciencia de la constancia</h3>
+        <p>Estudios de neuroplasticidad muestran que los micro-hábitos diarios de menos de 15 minutos generan rutas neuronales más sólidas que las rutinas largas e inconsistentes. La clave no es el tiempo: es la frecuencia.</p>
+        <div class="post-footer">
+          <span class="post-date">Marzo 2026</span>
+          <span class="post-tag">Neurociencia</span>
+        </div>
+      </div>
+    </div>
 
-  const postIds = ['post1','post2','post3','post4','post5'];
-  const tabs = ['blog0','blog1','blog2','blog3','blog4'];
-  tabs.forEach((t, i) => {
-    const titleEl = document.querySelector('#' + postIds[i] + ' .post-title');
-    const quoteEl = document.querySelector('#' + postIds[i] + ' .post-quote');
-    const tInput = document.getElementById('e-' + t + '-title');
-    const qInput = document.getElementById('e-' + t + '-quote');
-    if (titleEl && tInput) titleEl.textContent = tInput.value;
-    if (quoteEl && qInput) quoteEl.textContent = qInput.value;
-  });
-  closeEditor();
-}
-</script>
+    <!-- POST 4: VIDEO - Trabajo remoto -->
+    <div class="post-card">
+      <div class="post-visual">
+        <div class="anim-video v2">
+          <div class="v2-text">
+            <h2>Trabajo<br>remoto &amp;<br>bienestar</h2>
+            <p>El hogar se volvió oficina</p>
+          </div>
+          <div class="v2-bars">
+            <div class="v2-bar" style="height:45%;animation-delay:0s;"></div>
+            <div class="v2-bar" style="height:60%;animation-delay:0.1s;"></div>
+            <div class="v2-bar" style="height:35%;animation-delay:0.2s;"></div>
+            <div class="v2-bar" style="height:75%;animation-delay:0.3s;"></div>
+            <div class="v2-bar" style="height:55%;animation-delay:0.4s;"></div>
+            <div class="v2-bar" style="height:88%;animation-delay:0.5s;"></div>
+            <div class="v2-bar" style="height:65%;animation-delay:0.6s;"></div>
+            <div class="v2-bar" style="height:45%;animation-delay:0.7s;"></div>
+            <div class="v2-bar" style="height:70%;animation-delay:0.8s;"></div>
+          </div>
+          <div class="v2-dots">
+            <div class="v2-dot"></div>
+            <div class="v2-dot"></div>
+            <div class="v2-dot"></div>
+          </div>
+          <div style="position:absolute;bottom:14px;right:14px;background:rgba(255,255,255,0.15);border-radius:12px;padding:8px 14px;color:white;font-size:0.7rem;border:1px solid rgba(255,255,255,0.2);">
+            <strong style="font-size:1.1rem;display:block;color:#9FE1CB;">+43%</strong>
+            horas extra no pagadas
+          </div>
+        </div>
+        <div class="post-type-badge badge-video">🎬 Video</div>
+      </div>
+      <div class="post-body">
+        <div class="post-meta">Trabajo remoto · 2026</div>
+        <h3>El trabajo híbrido disparó el agotamiento: +43% de horas extra no pagadas</h3>
+        <p>El 68% de trabajadores remotos en Lima reporta dificultad para "apagar" el modo trabajo al terminar su jornada. La ausencia de límites físicos entre el hogar y la oficina genera una extensión promedio de 43% de horas extra no reconocidas, acelerando el deterioro emocional.</p>
+        <div class="post-footer">
+          <span class="post-date">Mayo 2026</span>
+          <span class="post-tag">Trabajo remoto</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- POST 5: IMAGEN - Mercado wellness -->
+    <div class="post-card">
+      <div class="post-visual" style="background:#085041;">
+        <svg class="img-illustration" viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="220" fill="#085041"/>
+          <!-- Decorative circles -->
+          <circle cx="370" cy="20" r="50" fill="#1D9E75" opacity="0.3"/>
+          <circle cx="30" cy="200" r="40" fill="#5DCAA5" opacity="0.15"/>
+          <!-- Title -->
+          <text x="24" y="44" fill="#9FE1CB" font-size="9" font-family="DM Sans,sans-serif" font-weight="500" letter-spacing="0.08em" text-anchor="start">MERCADO WELLNESS DIGITAL · LATAM</text>
+          <!-- Bar chart -->
+          <rect x="24" y="60" width="36" height="100" rx="4" fill="#1D9E75" opacity="0.4"/>
+          <rect x="24" y="100" width="36" height="60" rx="4" fill="#1D9E75" opacity="0.7"/>
+          <text x="42" y="175" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="DM Sans,sans-serif">2022</text>
+          <text x="42" y="93" text-anchor="middle" fill="#9FE1CB" font-size="8" font-family="Syne,sans-serif" font-weight="700">$4.2B</text>
+
+          <rect x="76" y="50" width="36" height="110" rx="4" fill="#1D9E75" opacity="0.4"/>
+          <rect x="76" y="82" width="36" height="78" rx="4" fill="#1D9E75" opacity="0.8"/>
+          <text x="94" y="175" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="DM Sans,sans-serif">2023</text>
+          <text x="94" y="75" text-anchor="middle" fill="#9FE1CB" font-size="8" font-family="Syne,sans-serif" font-weight="700">$6.1B</text>
+
+          <rect x="128" y="38" width="36" height="122" rx="4" fill="#1D9E75" opacity="0.4"/>
+          <rect x="128" y="62" width="36" height="98" rx="4" fill="#5DCAA5" opacity="0.9"/>
+          <text x="146" y="175" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="DM Sans,sans-serif">2024</text>
+          <text x="146" y="55" text-anchor="middle" fill="white" font-size="8" font-family="Syne,sans-serif" font-weight="700">$9.8B</text>
+
+          <rect x="180" y="22" width="36" height="138" rx="4" fill="#1D9E75" opacity="0.4"/>
+          <rect x="180" y="40" width="36" height="120" rx="4" fill="white" opacity="0.9"/>
+          <text x="198" y="175" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="DM Sans,sans-serif">2025</text>
+          <text x="198" y="33" text-anchor="middle" fill="white" font-size="9" font-family="Syne,sans-serif" font-weight="800">$14.5B</text>
+
+          <!-- Right side stats -->
+          <rect x="250" y="40" width="130" height="130" rx="14" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <text x="315" y="68" text-anchor="middle" fill="#9FE1CB" font-size="9" font-family="DM Sans,sans-serif" font-weight="500" letter-spacing="0.04em">CRECIMIENTO ANUAL</text>
+          <text x="315" y="102" text-anchor="middle" fill="white" font-size="34" font-family="Syne,sans-serif" font-weight="800">+38%</text>
+          <text x="315" y="120" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="DM Sans,sans-serif">apps de bienestar laboral</text>
+          <line x1="268" y1="132" x2="362" y2="132" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
+          <text x="315" y="150" text-anchor="middle" fill="#5DCAA5" font-size="9" font-family="DM Sans,sans-serif">Perú: mercado disponible</text>
+          <text x="315" y="163" text-anchor="middle" fill="white" font-size="13" font-family="Syne,sans-serif" font-weight="700">391,124 usuarios</text>
+
+          <!-- Bottom -->
+          <text x="24" y="200" fill="rgba(255,255,255,0.4)" font-size="8" font-family="DM Sans,sans-serif">Fuente: Grand View Research, INEI 2026</text>
+        </svg>
+        <div class="post-type-badge badge-data">📊 Datos</div>
+      </div>
+      <div class="post-body">
+        <div class="post-meta">Mercado · Oportunidad</div>
+        <h3>El mercado de wellness digital en LATAM creció 38% en 2025 y va a más</h3>
+        <p>Las apps de bienestar laboral registraron un crecimiento del 38% en descargas durante 2025 en América Latina. En Perú, el mercado disponible asciende a 391,124 profesionales con capacidad de pago. El timing para soluciones como FlowHabit nunca fue mejor.</p>
+        <div class="post-footer">
+          <span class="post-date">Enero 2026</span>
+          <span class="post-tag">Mercado</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- PRICING -->
+<section id="precios">
+<div class="section-inner">
+  <div style="text-align:center;margin-bottom:0.5rem;">
+    <div class="section-tag">Precios</div>
+    <h2 class="section-title">Sin sorpresas, sin letra pequeña</h2>
+    <p class="section-sub" style="margin: 0 auto; text-align:center;">Empieza gratis. Actualiza cuando estés listo.</p>
+  </div>
+  <div class="pricing-grid" style="margin-top:3rem;">
+    <div class="price-card">
+      <div class="price-name">Básico</div>
+      <div class="price-amount">S/ 0</div>
+      <div class="price-period">para siempre</div>
+      <ul class="price-features">
+        <li>3 hábitos activos</li>
+        <li>Recordatorios básicos</li>
+        <li>Progreso semanal</li>
+        <li class="no">Modo Corte Mental</li>
+        <li class="no">Alerta de saturación</li>
+        <li class="no">Sin anuncios</li>
+      </ul>
+      <a href="#descarga" class="btn-ghost" style="display:block;text-align:center;">Comenzar gratis</a>
+    </div>
+    <div class="price-card featured">
+      <div class="popular-badge">Más popular</div>
+      <div class="price-name">Premium</div>
+      <div class="price-amount" style="color:var(--green-dark);">S/ 25</div>
+      <div class="price-period">al mes · Cancela cuando quieras</div>
+      <ul class="price-features">
+        <li>Hábitos ilimitados</li>
+        <li>Recordatorios inteligentes</li>
+        <li>Modo Corte Mental ✨</li>
+        <li>Alerta de saturación ✨</li>
+        <li>Sin anuncios</li>
+        <li>Gamificación completa</li>
+      </ul>
+      <a href="#descarga" class="btn-primary" style="display:block;text-align:center;">Prueba 7 días gratis</a>
+    </div>
+    <div class="price-card">
+      <div class="price-name">Corporativo</div>
+      <div class="price-amount" style="font-size:2rem;">A medida</div>
+      <div class="price-period">para equipos y empresas</div>
+      <ul class="price-features">
+        <li>Todo Premium incluido</li>
+        <li>Dashboard de bienestar del equipo</li>
+        <li>Integración con RRHH</li>
+        <li>Onboarding dedicado</li>
+        <li>Soporte prioritario</li>
+        <li>Factura empresarial</li>
+      </ul>
+      <a href="mailto:hola@flowhabit.pe" class="btn-ghost" style="display:block;text-align:center;">Contactar ventas</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="opiniones" class="testimonials">
+<div class="section-inner">
+  <div class="section-tag">Opiniones</div>
+  <h2 class="section-title">Lo dicen quienes ya<br>cuidan su ritmo</h2>
+  <p class="section-sub">Validado con más de 20 entrevistas a profesionales independientes y colaboradores de Lima.</p>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"FlowHabit es lo único que ha logrado que yo, siendo freelance con clientes en 3 husos horarios, haga pausas activas. Las rutinas de 10 minutos se adaptan a mis huecos reales. Sin excusas."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">NB</div>
+        <div><div class="testi-name">Néstor B.</div><div class="testi-role">Consultor financiero independiente · Miraflores</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"El Modo Corte Mental cambió mi vida. Antes contestaba correos hasta la medianoche. Ahora a las 7 PM la app me hace parar, respirar 2 minutos y listo. Mi pareja nota la diferencia."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">RA</div>
+        <div><div class="testi-name">Rebeca A.</div><div class="testi-role">Coordinadora de proyectos · San Isidro</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Probé Habitica, Productive y Way of Life. Ninguna entendía mi ritmo de trabajo. FlowHabit sí. La alerta de saturación me avisa cuando estoy al límite antes de que yo lo note."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">AE</div>
+        <div><div class="testi-name">Amira E.</div><div class="testi-role">Diseñadora UX freelance · La Molina</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"La prueba gratuita de 7 días me convenció al instante. Sin anuncios, sin distracciones. Solo yo, mis hábitos y gráficos que me muestran que sí estoy avanzando. Ahora llevo 21 días de racha."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">AH</div>
+        <div><div class="testi-name">Andrea H.</div><div class="testi-role">Analista de datos · Surco</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Lo implementamos para todo el equipo de 15 personas. En un mes, las quejas de dolores de espalda bajaron notablemente. El dashboard corporativo nos da datos reales de bienestar del equipo."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">GP</div>
+        <div><div class="testi-name">Gabriela P.</div><div class="testi-role">Jefa de RRHH · Jesús María</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"S/25 al mes es lo que gasto en un café premium. Pero FlowHabit me devuelve energía real. Empecé a dormir mejor, a moverme más y a no llegar agotado a las reuniones del lunes."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">PC</div>
+        <div><div class="testi-name">Piero C.</div><div class="testi-role">Abogado independiente · Magdalena</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="descarga" class="final-cta">
+  <div style="max-width:650px;margin:0 auto;">
+    <h2>Empieza hoy.<br>Tu cuerpo y tu mente<br>te lo van a agradecer.</h2>
+    <p>7 días de prueba gratuita. Sin tarjeta de crédito. Cancela cuando quieras. Disponible en App Store y Google Play.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="#" class="btn-primary" style="font-size:1rem;padding:1rem 2.2rem;">
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        App Store
+      </a>
+      <a href="#" class="btn-primary" style="font-size:1rem;padding:1rem 2.2rem;">
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M3.18 23.76c.28.16.61.19.93.08l11.65-6.74-2.45-2.46-10.13 9.12zm16.45-9.56L16.96 12l2.67-2.2-11.07-6.4c-.34-.2-.75-.21-1.09-.04L17.63 12l2 2.2zM2.5 2.01C2.19 2.24 2 2.6 2 3.02v17.96c0 .42.19.78.5 1.01l.09.07L13.34 12 2.59 1.94l-.09.07z"/></svg>
+        Google Play
+      </a>
+    </div>
+    <p style="margin-top:2rem;font-size:0.82rem;opacity:0.6;">
+      Disponible para iOS 14+ y Android 8+. Lima, Perú. 2026.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">FlowHabit</div>
+    <p style="margin-top:0.4rem;">Bienestar en movimiento. Tu hábito, a tu ritmo.</p>
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacidad</a>
+    <a href="#">Términos</a>
+    <a href="#">Soporte</a>
+    <a href="mailto:hola@flowhabit.pe">Contacto</a>
+  </div>
+  <p style="font-size:0.78rem;">© 2026 FlowHabit · Lima, Perú</p>
+</footer>
+
 </body>
 </html>
