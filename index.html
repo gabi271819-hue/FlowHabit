@@ -39,7 +39,6 @@
     line-height: 1.15;
   }
 
-  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     background: rgba(255,255,255,0.95);
@@ -78,7 +77,6 @@
   }
   .nav-cta:hover { background: var(--green-dark) !important; transform: translateY(-1px); }
 
-  /* HERO */
   .hero {
     padding: 140px 5vw 100px;
     display: grid;
@@ -207,7 +205,6 @@
   .fb-text strong { display: block; font-weight: 600; color: #0a0a0a; font-size: 0.82rem; }
   .fb-text span { color: var(--muted); font-size: 0.72rem; }
 
-  /* STATS */
   .stats-bar {
     background: var(--green-deep);
     padding: 2.5rem 5vw;
@@ -217,7 +214,6 @@
   .stat-num { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; color: white; }
   .stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.65); margin-top: 2px; }
 
-  /* SECTIONS */
   section { padding: 100px 5vw; }
   .section-inner { max-width: 1200px; margin: 0 auto; }
   .section-tag {
@@ -230,7 +226,6 @@
   .section-title { font-size: clamp(1.9rem, 3.5vw, 2.8rem); font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.02em; }
   .section-sub { font-size: 1.05rem; color: var(--muted); font-weight: 300; max-width: 520px; line-height: 1.7; }
 
-  /* FEATURES */
   .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -262,7 +257,6 @@
   .feature-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.6rem; }
   .feature-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; font-weight: 300; }
 
-  /* IMPACT POSTS */
   .impact-section { background: var(--surface); }
   .posts-header {
     display: flex; justify-content: space-between; align-items: flex-end;
@@ -294,29 +288,12 @@
     background: #0a0a0a;
     flex-shrink: 0;
   }
-  .post-visual video {
-    width: 100%; height: 100%;
-    object-fit: cover; display: block;
-  }
-  .post-visual img {
-    width: 100%; height: 100%;
-    object-fit: cover; display: block;
-  }
   .post-visual-fallback {
     width: 100%; height: 100%;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
     gap: 12px;
   }
-  .play-btn {
-    width: 60px; height: 60px; border-radius: 50%;
-    background: rgba(255,255,255,0.15);
-    border: 2px solid rgba(255,255,255,0.5);
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer; transition: all 0.2s;
-  }
-  .play-btn:hover { background: rgba(255,255,255,0.25); transform: scale(1.1); }
-  .play-btn svg { width: 22px; height: 22px; fill: white; margin-left: 3px; }
   .post-type-badge {
     position: absolute; top: 14px; left: 14px;
     font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
@@ -339,23 +316,11 @@
     background: var(--green-light); padding: 3px 10px; border-radius: 20px;
   }
 
-  /* VIDEO embeds */
-  .video-wrapper {
-    width: 100%; height: 100%;
-    position: relative;
-  }
-  .video-wrapper iframe {
-    width: 100%; height: 100%;
-    border: none; display: block;
-  }
-
-  /* Generated SVG animations as video replacements */
   .anim-video {
     width: 100%; height: 100%;
     position: relative; overflow: hidden;
   }
 
-  /* VIDEO 1: Burnout animation */
   .v1 { background: linear-gradient(135deg, #0F2027, #203A43, #2C5364); }
   .v1 .pulse-ring {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
@@ -383,7 +348,6 @@
   }
   .v1 .stat-bubble strong { display: block; font-size: 1.4rem; font-family: 'Syne', sans-serif; color: #9FE1CB; }
 
-  /* VIDEO 2: Habits wave */
   .v2 { background: linear-gradient(160deg, #085041, #1D9E75); overflow: hidden; }
   .v2-bars {
     position: absolute; bottom: 0; left: 0; right: 0;
@@ -412,19 +376,9 @@
   .v2-dot:nth-child(3) { animation-delay: 0.6s; }
   @keyframes dotPulse { 0%{transform:scale(0.8);opacity:0.5} 100%{transform:scale(1.2);opacity:1} }
 
-  /* VIDEO 3: Sedentarismo */
   .v3 { background: linear-gradient(135deg, #1a0533, #3b1068); }
-  .v3-clock {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-60%);
-    width: 90px; height: 90px;
-  }
   .v3-ring { fill: none; stroke: rgba(255,255,255,0.15); stroke-width: 8; }
-  .v3-progress { fill: none; stroke: var(--green); stroke-width: 8; stroke-linecap: round; stroke-dasharray: 251; animation: clockFill 4s linear infinite; }
-  @keyframes clockFill { 0%{stroke-dashoffset:251} 100%{stroke-dashoffset:0} }
-  .v3-number {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-    color: white; font-family: 'Syne', sans-serif; font-weight: 800;
-  }
+  .v3-progress { fill: none; stroke: var(--green); stroke-width: 8; stroke-linecap: round; stroke-dasharray: 251; }
   .v3-labels {
     position: absolute; bottom: 24px; left: 0; right: 0;
     display: flex; justify-content: space-around;
@@ -433,10 +387,8 @@
   .v3-label strong { font-family: 'Syne', sans-serif; font-size: 1.3rem; color: #9FE1CB; display: block; }
   .v3-label span { font-size: 0.68rem; opacity: 0.7; }
 
-  /* IMAGE POSTS: SVG illustrations */
   .img-illustration { width: 100%; height: 100%; }
 
-  /* PRICING */
   .pricing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -471,21 +423,137 @@
   .price-features li.no::before { content: '×'; color: #ddd; }
   .price-features li.no { color: #bbb; }
 
-  /* TESTIMONIALS */
+  /* TESTIMONIALS — nueva versión interactiva */
   .testimonials { background: var(--green-deep); }
   .testimonials .section-title { color: white; }
   .testimonials .section-sub { color: rgba(255,255,255,0.65); }
   .testimonials .section-tag { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.9); }
+
+  /* Formulario */
+  .opinion-form {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 24px;
+    padding: 2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    max-width: 680px;
+  }
+  .opinion-form h3 {
+    font-family: 'Syne', sans-serif;
+    color: white;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+  }
+  .form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    min-width: 180px;
+  }
+  .form-field label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .form-field input,
+  .form-field textarea {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 0.7rem 1rem;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    resize: none;
+    width: 100%;
+  }
+  .form-field input::placeholder,
+  .form-field textarea::placeholder {
+    color: rgba(255,255,255,0.35);
+  }
+  .form-field input:focus,
+  .form-field textarea:focus {
+    border-color: var(--green-mid);
+    background: rgba(255,255,255,0.15);
+  }
+  .form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+  .stars-input {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .stars-input span {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.55);
+    margin-right: 4px;
+  }
+  .star-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.3rem;
+    color: rgba(255,255,255,0.25);
+    transition: color 0.15s, transform 0.15s;
+    padding: 0;
+    line-height: 1;
+  }
+  .star-btn:hover,
+  .star-btn.active { color: #FFD166; transform: scale(1.15); }
+  .btn-publicar {
+    background: var(--green);
+    color: white; font-weight: 600; font-size: 0.92rem;
+    padding: 0.65rem 1.6rem; border-radius: 40px;
+    border: none; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: all 0.2s; box-shadow: 0 4px 20px rgba(29,158,117,0.35);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-publicar:hover { background: var(--green-dark); transform: translateY(-1px); }
+  .btn-publicar:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .form-error {
+    font-size: 0.8rem;
+    color: #ff9e9e;
+    margin-top: 0.4rem;
+    display: none;
+  }
+
+  /* Grid de tarjetas de opiniones */
   .testi-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
   }
   .testi-card {
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.12);
     border-radius: 20px; padding: 1.8rem;
+    animation: cardEntrada 0.4s ease both;
+  }
+  @keyframes cardEntrada {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
   .testi-stars { color: #FFD166; font-size: 1rem; margin-bottom: 1rem; letter-spacing: 2px; }
   .testi-text { color: rgba(255,255,255,0.88); font-size: 0.9rem; line-height: 1.75; font-style: italic; font-weight: 300; margin-bottom: 1.3rem; }
@@ -495,11 +563,36 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 0.85rem; font-weight: 700;
     background: rgba(255,255,255,0.15); color: white;
+    flex-shrink: 0;
   }
   .testi-name { color: white; font-weight: 600; font-size: 0.9rem; }
   .testi-role { color: rgba(255,255,255,0.55); font-size: 0.78rem; }
 
-  /* CTA FINAL */
+  /* Mensaje vacío */
+  .empty-state {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: rgba(255,255,255,0.45);
+    border: 1px dashed rgba(255,255,255,0.2);
+    border-radius: 20px;
+    margin-top: 2rem;
+  }
+  .empty-state .empty-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .empty-state p { font-size: 1rem; font-weight: 300; line-height: 1.6; }
+  .empty-state strong { color: rgba(255,255,255,0.7); font-weight: 600; }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(80px);
+    background: var(--green-dark); color: white;
+    padding: 0.8rem 1.8rem; border-radius: 40px;
+    font-size: 0.88rem; font-weight: 500;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    z-index: 999; white-space: nowrap;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
   .final-cta {
     background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
     text-align: center; padding: 120px 5vw;
@@ -509,7 +602,6 @@
   .final-cta .btn-primary { background: white; color: var(--green-dark); box-shadow: 0 4px 30px rgba(0,0,0,0.2); }
   .final-cta .btn-primary:hover { background: #f0fdf8; transform: translateY(-2px); }
 
-  /* FOOTER */
   footer {
     background: #0a0a0a;
     color: rgba(255,255,255,0.55);
@@ -531,6 +623,7 @@
     .post-card.featured { grid-column: 1; }
     nav .nav-links { display: none; }
     .stats-bar { gap: 2rem; }
+    .form-row { flex-direction: column; }
   }
 </style>
 </head>
@@ -677,7 +770,6 @@
 
   <div class="posts-grid">
 
-    <!-- POST 1: VIDEO DESTACADO - Burnout Epidemic -->
     <div class="post-card featured">
       <div class="post-visual">
         <div class="anim-video v1">
@@ -695,9 +787,7 @@
             promedio diario perdido
             por baja concentración
           </div>
-          <div style="position:absolute;bottom:24px;left:24px;color:rgba(255,255,255,0.6);font-size:0.7rem;">
-            ▶ Mira la animación
-          </div>
+          <div style="position:absolute;bottom:24px;left:24px;color:rgba(255,255,255,0.6);font-size:0.7rem;">▶ Mira la animación</div>
         </div>
         <div class="post-type-badge badge-video">🎬 Video</div>
       </div>
@@ -712,17 +802,16 @@
       </div>
     </div>
 
-    <!-- POST 2: VIDEO - Sedentarismo Digital -->
     <div class="post-card">
       <div class="post-visual">
         <div class="anim-video v3" style="background:linear-gradient(135deg,#1a0533,#3b1068);">
-          <svg class="v3-clock" viewBox="0 0 90 90" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-65%);">
+          <svg style="position:absolute;top:50%;left:50%;transform:translate(-50%,-65%);width:90px;height:90px;" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
             <circle class="v3-ring" cx="45" cy="45" r="38"/>
             <circle class="v3-progress" cx="45" cy="45" r="38" stroke-dashoffset="251" transform="rotate(-90 45 45)">
               <animate attributeName="stroke-dashoffset" from="251" to="0" dur="5s" repeatCount="indefinite"/>
             </circle>
           </svg>
-          <div class="v3-number" style="top:42%;font-size:1.1rem;">📱</div>
+          <div style="position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);font-size:1.1rem;">📱</div>
           <div class="v3-labels">
             <div class="v3-label"><strong>8.4h</strong><span>frente a pantallas</span></div>
             <div class="v3-label"><strong>+62%</strong><span>dolor lumbar</span></div>
@@ -743,20 +832,16 @@
       </div>
     </div>
 
-    <!-- POST 3: IMAGEN - Micro-hábitos -->
     <div class="post-card">
       <div class="post-visual" style="background:#E1F5EE;">
         <svg class="img-illustration" viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
           <rect width="400" height="220" fill="#E1F5EE"/>
-          <!-- Background circles -->
           <circle cx="320" cy="40" r="80" fill="#9FE1CB" opacity="0.3"/>
           <circle cx="80" cy="180" r="60" fill="#1D9E75" opacity="0.15"/>
-          <!-- Calendar grid -->
           <rect x="30" y="30" width="200" height="155" rx="12" fill="white" stroke="#9FE1CB" stroke-width="1"/>
           <rect x="30" y="30" width="200" height="36" rx="12" fill="#1D9E75"/>
           <rect x="30" y="54" width="200" height="12" fill="#1D9E75"/>
           <text x="130" y="53" text-anchor="middle" fill="white" font-size="13" font-family="Syne,sans-serif" font-weight="700">Mayo 2026</text>
-          <!-- Days header -->
           <text x="50" y="82" fill="#9FE1CB" font-size="8" font-family="DM Sans,sans-serif" font-weight="500">L</text>
           <text x="75" y="82" fill="#9FE1CB" font-size="8" font-family="DM Sans,sans-serif" font-weight="500">M</text>
           <text x="100" y="82" fill="#9FE1CB" font-size="8" font-family="DM Sans,sans-serif" font-weight="500">X</text>
@@ -764,7 +849,6 @@
           <text x="150" y="82" fill="#9FE1CB" font-size="8" font-family="DM Sans,sans-serif" font-weight="500">V</text>
           <text x="175" y="82" fill="#9FE1CB" font-size="8" font-family="DM Sans,sans-serif" font-weight="500">S</text>
           <text x="200" y="82" fill="#9FE1CB" font-size="8" font-family="DM Sans,sans-serif" font-weight="500">D</text>
-          <!-- Habit dots -->
           <circle cx="50" cy="100" r="10" fill="#1D9E75"/><text x="50" y="104" text-anchor="middle" fill="white" font-size="8">✓</text>
           <circle cx="75" cy="100" r="10" fill="#1D9E75"/><text x="75" y="104" text-anchor="middle" fill="white" font-size="8">✓</text>
           <circle cx="100" cy="100" r="10" fill="#1D9E75"/><text x="100" y="104" text-anchor="middle" fill="white" font-size="8">✓</text>
@@ -777,13 +861,11 @@
           <circle cx="100" cy="125" r="10" fill="#1D9E75"/><text x="100" y="129" text-anchor="middle" fill="white" font-size="8">✓</text>
           <circle cx="125" cy="125" r="10" fill="#5DCAA5"/><text x="125" y="129" text-anchor="middle" fill="white" font-size="8">✓</text>
           <circle cx="150" cy="125" r="10" fill="#5DCAA5"/><text x="150" y="129" text-anchor="middle" fill="white" font-size="8">✓</text>
-          <!-- Streak badge -->
           <rect x="250" y="60" width="120" height="100" rx="16" fill="#0F6E56"/>
           <text x="310" y="88" text-anchor="middle" fill="white" font-size="22" font-family="Syne,sans-serif" font-weight="800">🔥</text>
           <text x="310" y="115" text-anchor="middle" fill="#9FE1CB" font-size="24" font-family="Syne,sans-serif" font-weight="800">21</text>
           <text x="310" y="132" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9" font-family="DM Sans,sans-serif">días de racha</text>
           <text x="310" y="150" text-anchor="middle" fill="#5DCAA5" font-size="8" font-family="DM Sans,sans-serif">¡Récord personal!</text>
-          <!-- Labels -->
           <text x="30" y="200" fill="#0F6E56" font-size="11" font-family="Syne,sans-serif" font-weight="700">La constancia es el único hábito que importa</text>
         </svg>
         <div class="post-type-badge badge-image">📸 Imagen</div>
@@ -799,7 +881,6 @@
       </div>
     </div>
 
-    <!-- POST 4: VIDEO - Trabajo remoto -->
     <div class="post-card">
       <div class="post-visual">
         <div class="anim-video v2">
@@ -841,38 +922,29 @@
       </div>
     </div>
 
-    <!-- POST 5: IMAGEN - Mercado wellness -->
     <div class="post-card">
       <div class="post-visual" style="background:#085041;">
         <svg class="img-illustration" viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
           <rect width="400" height="220" fill="#085041"/>
-          <!-- Decorative circles -->
           <circle cx="370" cy="20" r="50" fill="#1D9E75" opacity="0.3"/>
           <circle cx="30" cy="200" r="40" fill="#5DCAA5" opacity="0.15"/>
-          <!-- Title -->
           <text x="24" y="44" fill="#9FE1CB" font-size="9" font-family="DM Sans,sans-serif" font-weight="500" letter-spacing="0.08em" text-anchor="start">MERCADO WELLNESS DIGITAL · LATAM</text>
-          <!-- Bar chart -->
           <rect x="24" y="60" width="36" height="100" rx="4" fill="#1D9E75" opacity="0.4"/>
           <rect x="24" y="100" width="36" height="60" rx="4" fill="#1D9E75" opacity="0.7"/>
           <text x="42" y="175" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="DM Sans,sans-serif">2022</text>
           <text x="42" y="93" text-anchor="middle" fill="#9FE1CB" font-size="8" font-family="Syne,sans-serif" font-weight="700">$4.2B</text>
-
           <rect x="76" y="50" width="36" height="110" rx="4" fill="#1D9E75" opacity="0.4"/>
           <rect x="76" y="82" width="36" height="78" rx="4" fill="#1D9E75" opacity="0.8"/>
           <text x="94" y="175" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="DM Sans,sans-serif">2023</text>
           <text x="94" y="75" text-anchor="middle" fill="#9FE1CB" font-size="8" font-family="Syne,sans-serif" font-weight="700">$6.1B</text>
-
           <rect x="128" y="38" width="36" height="122" rx="4" fill="#1D9E75" opacity="0.4"/>
           <rect x="128" y="62" width="36" height="98" rx="4" fill="#5DCAA5" opacity="0.9"/>
           <text x="146" y="175" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="DM Sans,sans-serif">2024</text>
           <text x="146" y="55" text-anchor="middle" fill="white" font-size="8" font-family="Syne,sans-serif" font-weight="700">$9.8B</text>
-
           <rect x="180" y="22" width="36" height="138" rx="4" fill="#1D9E75" opacity="0.4"/>
           <rect x="180" y="40" width="36" height="120" rx="4" fill="white" opacity="0.9"/>
           <text x="198" y="175" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="DM Sans,sans-serif">2025</text>
           <text x="198" y="33" text-anchor="middle" fill="white" font-size="9" font-family="Syne,sans-serif" font-weight="800">$14.5B</text>
-
-          <!-- Right side stats -->
           <rect x="250" y="40" width="130" height="130" rx="14" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
           <text x="315" y="68" text-anchor="middle" fill="#9FE1CB" font-size="9" font-family="DM Sans,sans-serif" font-weight="500" letter-spacing="0.04em">CRECIMIENTO ANUAL</text>
           <text x="315" y="102" text-anchor="middle" fill="white" font-size="34" font-family="Syne,sans-serif" font-weight="800">+38%</text>
@@ -880,8 +952,6 @@
           <line x1="268" y1="132" x2="362" y2="132" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
           <text x="315" y="150" text-anchor="middle" fill="#5DCAA5" font-size="9" font-family="DM Sans,sans-serif">Perú: mercado disponible</text>
           <text x="315" y="163" text-anchor="middle" fill="white" font-size="13" font-family="Syne,sans-serif" font-weight="700">391,124 usuarios</text>
-
-          <!-- Bottom -->
           <text x="24" y="200" fill="rgba(255,255,255,0.4)" font-size="8" font-family="DM Sans,sans-serif">Fuente: Grand View Research, INEI 2026</text>
         </svg>
         <div class="post-type-badge badge-data">📊 Datos</div>
@@ -957,64 +1027,59 @@
 </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- TESTIMONIALS — INTERACTIVO -->
 <section id="opiniones" class="testimonials">
 <div class="section-inner">
   <div class="section-tag">Opiniones</div>
   <h2 class="section-title">Lo dicen quienes ya<br>cuidan su ritmo</h2>
-  <p class="section-sub">Validado con más de 20 entrevistas a profesionales independientes y colaboradores de Lima.</p>
-  <div class="testi-grid">
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"FlowHabit es lo único que ha logrado que yo, siendo freelance con clientes en 3 husos horarios, haga pausas activas. Las rutinas de 10 minutos se adaptan a mis huecos reales. Sin excusas."</p>
-      <div class="testi-author">
-        <div class="testi-avatar">NB</div>
-        <div><div class="testi-name">Néstor B.</div><div class="testi-role">Consultor financiero independiente · Miraflores</div></div>
+  <p class="section-sub">¿Ya usas FlowHabit? Comparte tu experiencia con la comunidad.</p>
+
+  <!-- Formulario -->
+  <div class="opinion-form">
+    <h3>Deja tu opinión</h3>
+    <div class="form-row">
+      <div class="form-field">
+        <label for="opinion-nombre">Nombre</label>
+        <input type="text" id="opinion-nombre" placeholder="Ej: Andrea H." maxlength="50" autocomplete="off">
+      </div>
+      <div class="form-field">
+        <label for="opinion-rol">Rol / Profesión <span style="font-weight:300;text-transform:none;letter-spacing:0;">(opcional)</span></label>
+        <input type="text" id="opinion-rol" placeholder="Ej: Diseñadora UX · Miraflores" maxlength="60" autocomplete="off">
       </div>
     </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"El Modo Corte Mental cambió mi vida. Antes contestaba correos hasta la medianoche. Ahora a las 7 PM la app me hace parar, respirar 2 minutos y listo. Mi pareja nota la diferencia."</p>
-      <div class="testi-author">
-        <div class="testi-avatar">RA</div>
-        <div><div class="testi-name">Rebeca A.</div><div class="testi-role">Coordinadora de proyectos · San Isidro</div></div>
-      </div>
+    <div class="form-field" style="margin-bottom:0;">
+      <label for="opinion-texto">Tu opinión</label>
+      <textarea id="opinion-texto" rows="3" placeholder="Cuéntanos cómo FlowHabit ha cambiado tu rutina…" maxlength="400"></textarea>
+      <div class="form-error" id="form-error">Por favor completa tu nombre y escribe tu opinión.</div>
     </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"Probé Habitica, Productive y Way of Life. Ninguna entendía mi ritmo de trabajo. FlowHabit sí. La alerta de saturación me avisa cuando estoy al límite antes de que yo lo note."</p>
-      <div class="testi-author">
-        <div class="testi-avatar">AE</div>
-        <div><div class="testi-name">Amira E.</div><div class="testi-role">Diseñadora UX freelance · La Molina</div></div>
+    <div class="form-footer">
+      <div class="stars-input" id="stars-input" role="group" aria-label="Calificación con estrellas">
+        <span>Calificación:</span>
+        <button class="star-btn" data-val="1" aria-label="1 estrella">★</button>
+        <button class="star-btn" data-val="2" aria-label="2 estrellas">★</button>
+        <button class="star-btn" data-val="3" aria-label="3 estrellas">★</button>
+        <button class="star-btn" data-val="4" aria-label="4 estrellas">★</button>
+        <button class="star-btn" data-val="5" aria-label="5 estrellas">★</button>
       </div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"La prueba gratuita de 7 días me convenció al instante. Sin anuncios, sin distracciones. Solo yo, mis hábitos y gráficos que me muestran que sí estoy avanzando. Ahora llevo 21 días de racha."</p>
-      <div class="testi-author">
-        <div class="testi-avatar">AH</div>
-        <div><div class="testi-name">Andrea H.</div><div class="testi-role">Analista de datos · Surco</div></div>
-      </div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"Lo implementamos para todo el equipo de 15 personas. En un mes, las quejas de dolores de espalda bajaron notablemente. El dashboard corporativo nos da datos reales de bienestar del equipo."</p>
-      <div class="testi-author">
-        <div class="testi-avatar">GP</div>
-        <div><div class="testi-name">Gabriela P.</div><div class="testi-role">Jefa de RRHH · Jesús María</div></div>
-      </div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"S/25 al mes es lo que gasto en un café premium. Pero FlowHabit me devuelve energía real. Empecé a dormir mejor, a moverme más y a no llegar agotado a las reuniones del lunes."</p>
-      <div class="testi-author">
-        <div class="testi-avatar">PC</div>
-        <div><div class="testi-name">Piero C.</div><div class="testi-role">Abogado independiente · Magdalena</div></div>
-      </div>
+      <button class="btn-publicar" id="btn-publicar" aria-label="Publicar opinión">
+        <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+        Publicar
+      </button>
     </div>
   </div>
+
+  <!-- Estado vacío / grid de opiniones -->
+  <div id="empty-state" class="empty-state" role="status" aria-live="polite">
+    <div class="empty-icon">💬</div>
+    <p><strong>¡Sé el primero en compartir tu experiencia!</strong><br>Las opiniones de la comunidad aparecerán aquí.</p>
+  </div>
+
+  <div class="testi-grid" id="testi-grid" aria-live="polite" aria-label="Opiniones de usuarios"></div>
 </div>
 </section>
+
+<!-- Toast -->
+<div class="toast" id="toast" role="alert" aria-live="assertive"></div>
 
 <!-- FINAL CTA -->
 <section id="descarga" class="final-cta">
@@ -1031,9 +1096,7 @@
         Google Play
       </a>
     </div>
-    <p style="margin-top:2rem;font-size:0.82rem;opacity:0.6;">
-      Disponible para iOS 14+ y Android 8+. Lima, Perú. 2026.
-    </p>
+    <p style="margin-top:2rem;font-size:0.82rem;opacity:0.6;">Disponible para iOS 14+ y Android 8+. Lima, Perú. 2026.</p>
   </div>
 </section>
 
@@ -1051,6 +1114,117 @@
   </div>
   <p style="font-size:0.78rem;">© 2026 FlowHabit · Lima, Perú</p>
 </footer>
+
+<script>
+  (function () {
+    const starsInput = document.getElementById('stars-input');
+    const starBtns = starsInput.querySelectorAll('.star-btn');
+    const inputNombre = document.getElementById('opinion-nombre');
+    const inputRol = document.getElementById('opinion-rol');
+    const inputTexto = document.getElementById('opinion-texto');
+    const formError = document.getElementById('form-error');
+    const btnPublicar = document.getElementById('btn-publicar');
+    const testiGrid = document.getElementById('testi-grid');
+    const emptyState = document.getElementById('empty-state');
+    const toast = document.getElementById('toast');
+
+    let starsSelected = 5;
+
+    // ── Estrella selección ─────────────────────────────────────
+    function renderStars(val) {
+      starBtns.forEach(btn => {
+        btn.classList.toggle('active', parseInt(btn.dataset.val) <= val);
+      });
+    }
+
+    renderStars(starsSelected);
+
+    starBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        starsSelected = parseInt(btn.dataset.val);
+        renderStars(starsSelected);
+      });
+      btn.addEventListener('mouseenter', () => renderStars(parseInt(btn.dataset.val)));
+      btn.addEventListener('mouseleave', () => renderStars(starsSelected));
+    });
+
+    // ── Iniciales del avatar ───────────────────────────────────
+    function getInitials(name) {
+      return name.trim().split(' ').slice(0, 2).map(w => w[0].toUpperCase()).join('');
+    }
+
+    // ── Mostrar toast ──────────────────────────────────────────
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // ── Crear tarjeta ──────────────────────────────────────────
+    function crearTarjeta(nombre, rol, texto, estrellas) {
+      const card = document.createElement('div');
+      card.className = 'testi-card';
+
+      const starsStr = '★'.repeat(estrellas) + '☆'.repeat(5 - estrellas);
+
+      const fecha = new Date().toLocaleDateString('es-PE', { month: 'long', year: 'numeric' });
+      const fechaCap = fecha.charAt(0).toUpperCase() + fecha.slice(1);
+
+      card.innerHTML = `
+        <div class="testi-stars">${starsStr}</div>
+        <p class="testi-text">"${texto}"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">${getInitials(nombre)}</div>
+          <div>
+            <div class="testi-name">${nombre}</div>
+            <div class="testi-role">${rol || fechaCap}</div>
+          </div>
+        </div>
+      `;
+      return card;
+    }
+
+    // ── Publicar ───────────────────────────────────────────────
+    btnPublicar.addEventListener('click', () => {
+      const nombre = inputNombre.value.trim();
+      const rol = inputRol.value.trim();
+      const texto = inputTexto.value.trim();
+
+      formError.style.display = 'none';
+
+      if (!nombre || !texto) {
+        formError.style.display = 'block';
+        (nombre ? inputTexto : inputNombre).focus();
+        return;
+      }
+
+      const card = crearTarjeta(nombre, rol, texto, starsSelected);
+      testiGrid.appendChild(card);
+
+      // Ocultar estado vacío si hay al menos una tarjeta
+      emptyState.style.display = 'none';
+
+      // Reset
+      inputNombre.value = '';
+      inputRol.value = '';
+      inputTexto.value = '';
+      starsSelected = 5;
+      renderStars(5);
+
+      showToast('¡Gracias por compartir tu experiencia! 🙌');
+
+      // Scroll suave hacia la tarjeta recién creada
+      setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+    });
+
+    // ── Enter en los inputs ────────────────────────────────────
+    [inputNombre, inputRol].forEach(el => {
+      el.addEventListener('keydown', e => {
+        if (e.key === 'Enter') btnPublicar.click();
+      });
+    });
+  })();
+</script>
 
 </body>
 </html>
